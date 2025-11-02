@@ -24,6 +24,7 @@ export default [
         __BUILD_STORYBOOK__: 'readonly',
         __BUILD_DOCS__: 'readonly',
         __TEST_COVERAGE__: 'readonly',
+        __VITE_BASE_PATH__: 'readonly',
       },
     },
     plugins: {
