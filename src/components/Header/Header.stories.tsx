@@ -1,7 +1,7 @@
 import { fn } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/preact';
 
-import { Header, type HeaderProps } from './Header';
+import { Header, type HeaderProps } from './index';
 
 const meta: Meta<HeaderProps> = {
   title: 'Example/Header',

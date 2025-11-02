@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 import { userEvent, within } from 'storybook/test';
 
-import { Page, StorybookContent } from './Page';
+import { Page, StorybookContent } from './index';
 
 const meta: Meta = {
   title: 'Example/Page',

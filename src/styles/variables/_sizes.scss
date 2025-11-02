@@ -1,0 +1,21 @@
+// Component sizes
+$size-xs: 1.5rem; // 24px
+$size-sm: 2rem; // 32px
+$size-md: 2.5rem; // 40px
+$size-lg: 3rem; // 48px
+$size-xl: 3.5rem; // 56px
+$size-2xl: 4rem; // 64px
+
+// Container widths
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1536px;
+
+// Special sizes
+$size-full: 100%;
+$size-screen: 100vw;
+$size-min: min-content;
+$size-max: max-content;
+$size-fit: fit-content;

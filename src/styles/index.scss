@@ -1,3 +1,40 @@
+// =============================================================================
+// Modern SCSS System - Entry Point
+// Using @use instead of deprecated @import for better modularity and namespacing
+// =============================================================================
+
+// Base: Reset and foundational styles
+@use 'base/reset';
+@use 'base/colors';
+@use 'base/spacing';
+@use 'base/typography';
+
+// Variables: Design tokens
+// Using @forward to re-export for use in other files
+@forward 'variables/typography';
+@forward 'variables/sizes';
+@forward 'variables/breakpoints';
+@forward 'variables/z-index';
+@forward 'variables/borders';
+@forward 'variables/shadows';
+@forward 'variables/transitions';
+
+// Utilities: Mixins, functions, and helpers
+@forward 'utilities/functions';
+@forward 'utilities/mixins';
+@forward 'utilities/responsive';
+@forward 'utilities/animations';
+@use 'utilities/helpers';
+
+// Components: UI component styles
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/cards';
+@use 'components/modals';
+
+// Legacy app styles (backwards compatibility)
+// These will be gradually migrated to the new system
+
 :root {
   // Color palette - Dark mode defaults
   --color-primary: oklch(55% 0.2 240);
@@ -29,26 +66,12 @@
   --color-shadow: rgb(0 0 0 / 25%);
   --color-button-border: rgb(255 255 255 / 15%);
 
-  // Typography
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
-  line-height: 1.6;
-  font-weight: 400;
-
   // Rendering
   color-scheme: light dark;
   color: var(--color-text-dark);
   background-color: var(--color-bg-dark);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 // Light mode overrides
@@ -77,17 +100,7 @@
   }
 }
 
-// Global styles
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-}
-
+// Legacy app-specific styles
 a {
   font-weight: 500;
   color: var(--color-primary);
@@ -111,17 +124,6 @@ body {
   flex-direction: column;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  line-height: 1.1;
-  margin: 0;
-}
-
-h2 {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  line-height: 1.2;
 }
 
 button {
@@ -170,7 +172,7 @@ button {
   }
 }
 
-// Tab Navigation
+// Legacy component styles
 .tab-navigation {
   display: flex;
   gap: 0.75rem;
@@ -181,7 +183,6 @@ button {
   padding: 0.5rem;
 }
 
-// Logo container
 .logo-container {
   display: flex;
   gap: 2rem;
@@ -191,7 +192,6 @@ button {
   margin-bottom: 1rem;
 }
 
-// Logo animations
 .logo {
   height: clamp(4em, 10vw, 6em);
   padding: 1em;
@@ -207,40 +207,12 @@ button {
   }
 }
 
-// Card
-.card {
-  padding: 1.5rem;
-  border-radius: 8px;
-  background-color: var(--color-bg-light);
-  margin: 1rem auto;
-  max-width: 500px;
-
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-
-  p {
-    margin: 1rem 0 0;
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-  }
-
-  code {
-    background-color: var(--color-button-bg-dark);
-    padding: 0.2em 0.5em;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9em;
-  }
-}
-
-// Read the Docs
 .read-the-docs {
   color: var(--color-muted);
   font-size: 0.9rem;
 }
 
-// Button Component - Improved visibility
+// Storybook compatibility
 .button {
   display: inline-block;
   cursor: pointer;
@@ -278,9 +250,7 @@ button {
 
     &:hover:not(:disabled) {
       border-color: var(--color-primary);
-      background-color: oklch(
-        from var(--color-button-bg-dark) calc(l + 0.05) c h
-      );
+      background-color: oklch(from var(--color-button-bg-dark) calc(l + 0.05) c h);
     }
   }
 
@@ -300,7 +270,6 @@ button {
   }
 }
 
-// Header Component - Responsive
 .header {
   display: flex;
   justify-content: space-between;
@@ -352,7 +321,6 @@ button {
   }
 }
 
-// Page Component - Responsive
 .page {
   margin: 0 auto;
   padding: 2rem 1rem;
@@ -443,7 +411,6 @@ button {
   }
 }
 
-// Storybook docs story background synchronization
 .docs-story {
   background-color: var(--color-bg-dark);
 
@@ -452,7 +419,6 @@ button {
   }
 }
 
-// Footer styles
 .app-footer {
   margin-top: auto;
   padding: 1rem;
@@ -504,7 +470,7 @@ button {
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
   }
 
   &:focus {

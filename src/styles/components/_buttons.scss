@@ -1,0 +1,186 @@
+@use '../base/colors' as *;
+@use '../variables/typography' as *;
+@use '../base/spacing' as *;
+@use '../variables/borders' as *;
+@use '../variables/shadows' as *;
+@use '../variables/transitions' as *;
+
+// Button base styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-2 $spacing-4;
+  border: $border-width-default solid transparent;
+  border-radius: $border-radius-default;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: $transition-all;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  // Variants
+  &--primary {
+    color: $color-text-inverse;
+    background-color: $color-primary-500;
+    border-color: $color-primary-500;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary-600;
+      border-color: $color-primary-600;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $color-primary-700;
+      border-color: $color-primary-700;
+    }
+  }
+
+  &--secondary {
+    color: $color-text-inverse;
+    background-color: $color-secondary-500;
+    border-color: $color-secondary-500;
+
+    &:hover:not(:disabled) {
+      background-color: $color-secondary-600;
+      border-color: $color-secondary-600;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $color-secondary-700;
+      border-color: $color-secondary-700;
+    }
+  }
+
+  &--outline {
+    color: $color-primary-500;
+    background-color: transparent;
+    border-color: $color-primary-500;
+
+    &:hover:not(:disabled) {
+      color: $color-text-inverse;
+      background-color: $color-primary-500;
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: $color-bg-hover;
+    }
+  }
+
+  // Sizes
+  &--xs {
+    padding: $spacing-1 $spacing-2;
+    font-size: $font-size-xs;
+  }
+
+  &--sm {
+    padding: $spacing-1-5 $spacing-3;
+    font-size: $font-size-sm;
+  }
+
+  &--md {
+    // Default size
+  }
+
+  &--lg {
+    padding: $spacing-3 $spacing-6;
+    font-size: $font-size-lg;
+  }
+
+  &--xl {
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-xl;
+  }
+
+  // States
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1em;
+      height: 1em;
+      margin-top: -0.5em;
+      margin-left: -0.5em;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: rotate 0.6s linear infinite;
+    }
+  }
+
+  // Modifiers
+  &--full-width {
+    width: 100%;
+  }
+
+  // Elements
+  &__icon {
+    display: inline-flex;
+    margin-right: $spacing-2;
+
+    &--right {
+      margin-right: 0;
+      margin-left: $spacing-2;
+    }
+  }
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+
+  .btn {
+    border-radius: 0;
+
+    &:first-child {
+      border-top-left-radius: $border-radius-default;
+      border-bottom-left-radius: $border-radius-default;
+    }
+
+    &:last-child {
+      border-top-right-radius: $border-radius-default;
+      border-bottom-right-radius: $border-radius-default;
+    }
+
+    &:not(:last-child) {
+      border-right-width: 0;
+    }
+  }
+}
