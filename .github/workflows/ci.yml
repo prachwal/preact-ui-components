@@ -75,10 +75,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: |
-            dist/
-            dist/storybook/
-            dist/docs/
+          path: dist/
+          retention-days: 7
+
+      - name: Upload Storybook artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-artifacts
+          path: dist/storybook/
+          retention-days: 7
+
+      - name: Upload docs artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-artifacts
+          path: dist/docs/
           retention-days: 7
 
   test:
@@ -137,7 +148,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: artifacts/
+          path: dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -145,7 +156,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: artifacts/dist
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
