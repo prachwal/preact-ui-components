@@ -10,7 +10,7 @@
       "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
     },
-    "./styles": "./lib/styles.scss"
+    "./styles": "./lib/styles.css"
   },
   "files": [
     "lib",
@@ -46,7 +46,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:lib": "tsc --project tsconfig.lib.json && cp -r src/styles lib/",
-    "build:css": "echo 'CSS will be processed by consumer'",
+    "build:css": "sass lib/styles/index.scss lib/styles/styles.css",
     "build:publish": "npm run build:lib && npm run build:css",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
