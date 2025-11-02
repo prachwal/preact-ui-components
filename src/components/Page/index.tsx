@@ -1,10 +1,10 @@
-import type { JSX } from 'preact';
+import type { ComponentChildren, JSX } from 'preact';
 import { memo } from 'preact/compat';
 import { useCallback, useState } from 'preact/hooks';
 import { Header } from '../Header';
 
 export interface PageProps {
-  children?: preact.ComponentChildren;
+  children?: ComponentChildren;
 }
 
 interface User {
