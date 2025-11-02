@@ -14,7 +14,7 @@ interface User {
 const JANE_DOE: Readonly<User> = Object.freeze({ name: 'Jane Doe' });
 
 export const Page = ({ children }: PageProps): JSX.Element => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User | undefined>();
 
   const handleLogin = useCallback(() => setUser(JANE_DOE), []);
   const handleLogout = useCallback(() => setUser(undefined), []);
@@ -40,6 +40,7 @@ const VIEWPORT_ICON: JSX.Element = (
     viewBox='0 0 12 12'
     xmlns='http://www.w3.org/2000/svg'
     aria-hidden='true'
+    focusable='false'
   >
     <g fill='none' fillRule='evenodd'>
       <path

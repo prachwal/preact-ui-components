@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'preact/hooks';
+import type { JSX } from 'preact';
+import { useCallback, useMemo, useState } from 'preact/hooks';
 import preactLogo from './assets/preact.svg';
 import { Button } from './stories/Button';
 import { Page, StorybookContent } from './stories/Page';
@@ -11,47 +12,41 @@ interface HomeTabProps {
   onIncrement: () => void;
 }
 
-function HomeTab({ count, onIncrement }: HomeTabProps) {
-  return (
-    <>
-      <div className='logo-container'>
-        <a href='https://vite.dev' target='_blank' rel='noopener noreferrer'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a
-          href='https://preactjs.com'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <img src={preactLogo} className='logo preact' alt='Preact logo' />
-        </a>
-      </div>
-      <h1>Vite + Preact</h1>
-      <div className='card'>
-        <Button label={`count is ${count}`} onClick={onIncrement} />
-        <p>
-          Edit <code>src/app.tsx</code> and save to test HMR
-        </p>
-      </div>
+const HomeTab = ({ count, onIncrement }: HomeTabProps): JSX.Element => (
+  <>
+    <div className='logo-container'>
+      <a href='https://vite.dev' target='_blank' rel='noopener noreferrer'>
+        <img src={viteLogo} className='logo' alt='Vite logo' />
+      </a>
+      <a href='https://preactjs.com' target='_blank' rel='noopener noreferrer'>
+        <img src={preactLogo} className='logo preact' alt='Preact logo' />
+      </a>
+    </div>
+    <h1>Vite + Preact</h1>
+    <div className='card'>
+      <Button label={`count is ${count}`} onClick={onIncrement} />
       <p>
-        Check out{' '}
-        <a
-          href='https://preactjs.com/guide/v10/getting-started#create-a-vite-powered-preact-app'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          create-preact
-        </a>
-        , the official Preact + Vite starter
+        Edit <code>src/app.tsx</code> and save to test HMR
       </p>
-      <p className='read-the-docs'>
-        Click on the Vite and Preact logos to learn more
-      </p>
-    </>
-  );
-}
+    </div>
+    <p>
+      Check out{' '}
+      <a
+        href='https://preactjs.com/guide/v10/getting-started#create-a-vite-powered-preact-app'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        create-preact
+      </a>
+      , the official Preact + Vite starter
+    </p>
+    <p className='read-the-docs'>
+      Click on the Vite and Preact logos to learn more
+    </p>
+  </>
+);
 
-export function App() {
+export function App(): JSX.Element {
   const [count, setCount] = useState(0);
   const [activeTab, setActiveTab] = useState<Tab>('home');
 
@@ -59,28 +54,35 @@ export function App() {
   const setHomeTab = useCallback(() => setActiveTab('home'), []);
   const setStorybookTab = useCallback(() => setActiveTab('storybook'), []);
 
+  const content = useMemo(
+    () =>
+      activeTab === 'home' ? (
+        <HomeTab count={count} onIncrement={incrementCount} />
+      ) : (
+        <StorybookContent />
+      ),
+    [activeTab, count, incrementCount]
+  );
+
   return (
     <Page>
-      <nav className='tab-navigation'>
+      <nav className='tab-navigation' aria-label='Main navigation'>
         <Button
           label='Home'
           onClick={setHomeTab}
           primary={activeTab === 'home'}
           size='medium'
+          aria-current={activeTab === 'home' ? 'page' : undefined}
         />
         <Button
           label='Storybook'
           onClick={setStorybookTab}
           primary={activeTab === 'storybook'}
           size='medium'
+          aria-current={activeTab === 'storybook' ? 'page' : undefined}
         />
       </nav>
-
-      {activeTab === 'home' ? (
-        <HomeTab count={count} onIncrement={incrementCount} />
-      ) : (
-        <StorybookContent />
-      )}
+      {content}
     </Page>
   );
 }

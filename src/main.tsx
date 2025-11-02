@@ -3,6 +3,8 @@ import { App } from './app';
 import './styles/index.scss';
 
 const root = document.getElementById('app');
-if (root) {
-  render(<App />, root);
+if (!root) {
+  throw new Error('Root element not found');
 }
+
+render(<App />, root);

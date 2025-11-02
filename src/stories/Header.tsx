@@ -16,6 +16,7 @@ const ACME_LOGO: JSX.Element = (
     viewBox='0 0 32 32'
     xmlns='http://www.w3.org/2000/svg'
     aria-label='Acme Logo'
+    role='img'
   >
     <g fill='none' fillRule='evenodd'>
       <path
@@ -49,7 +50,7 @@ const HeaderComponent = ({
       <div className='header__actions'>
         {user ? (
           <>
-            <span className='welcome'>
+            <span className='welcome' aria-label={`Logged in as ${user.name}`}>
               Welcome, <b>{user.name}</b>!
             </span>
             <Button size='small' onClick={onLogout} label='Log out' />
