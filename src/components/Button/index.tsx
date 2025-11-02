@@ -11,7 +11,10 @@ export interface ButtonProps extends Omit<ComponentProps<'button'>, 'type'> {
   disabled?: boolean;
 }
 
-const SIZE_CLASSES: Record<ButtonProps['size'] & string, string> = {
+const VALID_SIZES = ['small', 'medium', 'large'] as const;
+type ValidSize = (typeof VALID_SIZES)[number];
+
+const SIZE_CLASSES: Record<ValidSize, string> = {
   small: 'button--small',
   medium: 'button--medium',
   large: 'button--large',
@@ -26,8 +29,15 @@ const ButtonComponent = ({
   style,
   ...props
 }: ButtonProps): JSX.Element => {
+  // Runtime validation for size prop
+  if (size && !VALID_SIZES.includes(size as ValidSize)) {
+    console.warn(
+      `Invalid size prop: "${size}". Valid values are: ${VALID_SIZES.join(', ')}`
+    );
+  }
+
   const mode = primary ? 'button--primary' : 'button--secondary';
-  const sizeClass = SIZE_CLASSES[size];
+  const sizeClass = SIZE_CLASSES[size as ValidSize] || SIZE_CLASSES.medium;
   const classes = className
     ? `button ${sizeClass} ${mode} ${className}`
     : `button ${sizeClass} ${mode}`;
@@ -37,13 +47,7 @@ const ButtonComponent = ({
     : style;
 
   return (
-    <button
-      type='button'
-      className={classes}
-      style={buttonStyle}
-      aria-pressed={primary ? 'true' : undefined}
-      {...props}
-    >
+    <button type='button' className={classes} style={buttonStyle} {...props}>
       {label}
     </button>
   );

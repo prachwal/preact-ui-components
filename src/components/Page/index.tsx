@@ -13,7 +13,7 @@ interface User {
 
 const JANE_DOE: Readonly<User> = Object.freeze({ name: 'Jane Doe' });
 
-export const Page = ({ children }: PageProps): JSX.Element => {
+const PageComponent = ({ children }: PageProps): JSX.Element => {
   const [user, setUser] = useState<User | undefined>();
 
   const handleLogin = useCallback(() => setUser(JANE_DOE), []);
@@ -32,6 +32,8 @@ export const Page = ({ children }: PageProps): JSX.Element => {
     </article>
   );
 };
+
+export const Page = memo(PageComponent);
 
 const VIEWPORT_ICON: JSX.Element = (
   <svg

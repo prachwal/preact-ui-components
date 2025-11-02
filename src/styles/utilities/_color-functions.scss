@@ -1,16 +1,38 @@
 @use 'sass:color';
 
 // Add alpha transparency to a color
+// Uses modern Sass color functions for better compatibility
 @function alpha($color, $opacity) {
-  @return color.change($color, $alpha: $opacity);
+  // Ensure opacity is between 0 and 1
+  $opacity: max(0, min(1, $opacity));
+
+  // Use color.adjust for better compatibility across color formats
+  @return color.adjust($color, $alpha: $opacity - color.alpha($color));
 }
 
-// Lighten color (already exists but imported here for completeness)
+// Lighten color using color.mix for better results
 @function tint($color, $percentage) {
   @return color.mix(white, $color, $percentage);
 }
 
-// Darken color (already exists but imported here for completeness)
+// Darken color using color.mix for better results
 @function shade($color, $percentage) {
   @return color.mix(black, $color, $percentage);
+}
+
+// Additional utility functions for color manipulation
+@function lighten($color, $percentage) {
+  @return color.adjust($color, $lightness: $percentage);
+}
+
+@function darken($color, $percentage) {
+  @return color.adjust($color, $lightness: -$percentage);
+}
+
+@function saturate($color, $percentage) {
+  @return color.adjust($color, $saturation: $percentage);
+}
+
+@function desaturate($color, $percentage) {
+  @return color.adjust($color, $saturation: -$percentage);
 }

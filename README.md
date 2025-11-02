@@ -5,12 +5,15 @@ A modern, accessible, and reusable component library built with Preact, TypeScri
 ## Features
 
 - ⚡ **Fast**: Built with Preact for optimal performance
-- 🎨 **Modern**: Uses SCSS modules for styling with a design system approach
-- ♿ **Accessible**: WCAG 2.1 Level AA compliant components
-- 📱 **Responsive**: Mobile-first design with fluid layouts
-- 🔧 **Developer Experience**: TypeScript support, Storybook documentation, and comprehensive tooling
+- 🎨 **Modern**: Uses SCSS modules with @use/@forward for better modularity and namespacing
+- ♿ **Accessible**: WCAG 2.1 Level AA compliant components with proper ARIA support
+- 📱 **Responsive**: Mobile-first design with fluid layouts and breakpoint management
+- 🔧 **Developer Experience**: TypeScript support, Storybook documentation, comprehensive tooling
 - 🧪 **Tested**: Includes testing setup with Vitest and Testing Library
 - 📦 **Publishable**: Ready for npm distribution as a scoped package
+- 🛡️ **Error Boundaries**: Built-in error handling for robust applications
+- 🎯 **Type Safe**: Runtime validation and TypeScript interfaces
+- 🎨 **Design System**: Comprehensive SCSS architecture with design tokens
 
 ## Installation
 
@@ -33,21 +36,23 @@ npm install @prachwal/preact-ui-components
 ### Basic Setup
 
 ```tsx
-import { Button, Header, Page } from '@prachwal/preact-ui-components';
+import { Button, Header, Page, ErrorBoundary } from '@prachwal/preact-ui-components';
 import '@prachwal/preact-ui-components/styles';
 
-// Use components in your app
+// Wrap your app with ErrorBoundary for better error handling
 function App() {
   return (
-    <Page>
-      <Header
-        user={{ name: 'John Doe' }}
-        onLogin={() => {}}
-        onLogout={() => {}}
-        onCreateAccount={() => {}}
-      />
-      <Button label='Click me' onClick={() => console.log('Clicked!')} />
-    </Page>
+    <ErrorBoundary>
+      <Page>
+        <Header
+          user={{ name: 'John Doe' }}
+          onLogin={() => {}}
+          onLogout={() => {}}
+          onCreateAccount={() => {}}
+        />
+        <Button label='Click me' onClick={() => console.log('Clicked!')} />
+      </Page>
+    </ErrorBoundary>
   );
 }
 ```
@@ -58,6 +63,30 @@ function App() {
 import { Button } from '@prachwal/preact-ui-components';
 // Import styles separately
 import '@prachwal/preact-ui-components/styles';
+```
+
+### Individual Component Import
+
+```tsx
+import { Button } from '@prachwal/preact-ui-components';
+// Import styles separately
+import '@prachwal/preact-ui-components/styles';
+```
+
+## Error Handling
+
+The library includes built-in error boundaries for robust error handling:
+
+```tsx
+import { ErrorBoundary } from '@prachwal/preact-ui-components';
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <YourAppContent />
+    </ErrorBoundary>
+  );
+}
 ```
 
 ## Development
@@ -143,16 +172,49 @@ npm run test:coverage  # Run tests with coverage report
 ```text
 src/
 ├── assets/              # Static assets (logos, icons)
-├── stories/             # Components and Storybook stories
-│   ├── Button.tsx       # Button component
-│   ├── Button.stories.tsx # Button stories
-│   ├── Button.test.tsx  # Button tests
-│   ├── Header.tsx       # Header component
-│   ├── Page.tsx         # Page layout component
+├── components/          # UI Components
+│   ├── Button/          # Button component
+│   │   ├── index.tsx    # Component implementation
+│   │   ├── Button.mdx   # Documentation
+│   │   ├── Button.stories.tsx # Storybook stories
+│   │   └── Button.test.tsx    # Unit tests
+│   ├── ErrorBoundary/   # Error boundary component
+│   ├── Footer/          # Footer component
+│   ├── Header/          # Header component
+│   ├── Page/            # Page layout component
 │   └── index.ts         # Component exports
-├── styles/              # Global styles and design system
-│   ├── index.scss       # Main stylesheet
-│   └── index.scss.d.ts  # TypeScript declarations
+├── config/              # Application configuration
+│   └── app.ts           # App config with build constants
+├── styles/              # SCSS design system
+│   ├── index.scss       # Main stylesheet entry point
+│   ├── index.scss.d.ts  # TypeScript declarations
+│   ├── base/            # Foundation styles
+│   │   ├── _colors.scss     # Color palette
+│   │   ├── _reset.scss      # CSS reset
+│   │   ├── _spacing.scss    # Spacing scale
+│   │   └── _typography.scss # Typography system
+│   ├── variables/       # Design tokens
+│   │   ├── _borders.scss    # Border styles
+│   │   ├── _breakpoints.scss # Responsive breakpoints
+│   │   ├── _shadows.scss    # Shadow definitions
+│   │   ├── _sizes.scss      # Size variables
+│   │   ├── _transitions.scss # Animation transitions
+│   │   └── _typography.scss # Typography variables
+│   ├── utilities/       # Utility functions and mixins
+│   │   ├── _animations.scss     # Animation keyframes
+│   │   ├── _color-functions.scss # Color manipulation
+│   │   ├── _functions.scss      # SCSS functions
+│   │   ├── _helpers.scss        # Utility classes
+│   │   ├── _mixins.scss         # SCSS mixins
+│   │   └── _responsive.scss     # Responsive utilities
+│   └── components/      # Component-specific styles
+│       ├── _app.scss        # App-specific styles
+│       ├── _buttons.scss    # Button styles
+│       ├── _cards.scss      # Card styles
+│       ├── _forms.scss      # Form styles
+│       └── _modals.scss     # Modal styles
+├── types/               # TypeScript type definitions
+│   └── globals.d.ts     # Global type declarations
 ├── app.tsx              # Demo application
 ├── index.ts             # Library entry point
 ├── main.tsx             # Application entry point
@@ -223,27 +285,63 @@ Layout component providing consistent page structure.
 
 ## Design System
 
-This project follows a comprehensive design system with:
+This project follows a comprehensive design system with modern SCSS architecture:
 
-- **Color Palette**: OKLCH color space with light/dark mode support
-- **Typography**: Fluid typography with clamp() functions
-- **Spacing**: Consistent spacing scale using CSS custom properties
-- **Components**: Reusable component patterns and variants
-- **Accessibility**: WCAG 2.1 Level AA compliance
-- **Responsive**: Mobile-first approach with fluid layouts
+- **SCSS Architecture**: Uses @use/@forward for better modularity and namespacing
+- **Color System**: HSL-based color palette with semantic color variables
+- **Typography**: Fluid typography with consistent font scales
+- **Spacing**: 8px-based spacing scale with rem units
+- **Components**: Reusable component patterns with BEM methodology
+- **Accessibility**: WCAG 2.1 Level AA compliance with proper ARIA support
+- **Responsive**: Mobile-first approach with fluid layouts and breakpoint management
+- **Animations**: Consistent animation system with meaningful variables
 
-### CSS Custom Properties
+### SCSS Architecture
 
-The design system uses CSS custom properties for easy theming:
+The SCSS system is organized into logical layers:
 
-```css
-:root {
-  --color-primary: oklch(55% 0.2 240);
-  --color-bg-dark: oklch(18% 0.015 240);
-  --color-text-dark: oklch(92% 0.01 220);
-  /* ... more variables */
-}
+```scss
+// Entry point with @use/@forward
+@use 'base/reset';
+@use 'base/colors';
+@use 'base/spacing';
+@use 'base/typography';
+
+@forward 'variables/typography';
+@forward 'variables/sizes';
+@forward 'variables/breakpoints';
+// ... etc
 ```
+
+### Design Tokens
+
+All design decisions are centralized in SCSS variables:
+
+```scss
+// Colors
+$color-primary-500: hsl(220, 89%, 56%);
+$color-text-primary: hsl(220, 13%, 18%);
+
+// Spacing
+$spacing-1: 0.25rem; // 4px
+$spacing-2: 0.5rem; // 8px
+$spacing-4: 1rem; // 16px
+
+// Typography
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-weight-medium: 500;
+```
+
+### Development Guidelines
+
+- Use functional components with `memo()` for performance
+- Implement proper TypeScript interfaces with JSDoc comments
+- Follow accessibility best practices (ARIA, keyboard navigation)
+- Use BEM naming convention for CSS classes
+- Include comprehensive prop validation and error handling
+- Write unit tests for all components
+- Document components with Storybook
 
 ## Scripts Reference
 
@@ -299,7 +397,7 @@ To publish this package:
 7. Push to the branch (`git push origin feature/amazing-feature`)
 8. Open a Pull Request
 
-### Development Guidelines
+### Code Standards
 
 - Follow the existing code style and patterns
 - Write comprehensive tests for new components

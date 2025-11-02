@@ -11,6 +11,7 @@
 
 // Variables: Design tokens
 // Using @forward to re-export for use in other files
+@forward 'base/spacing';
 @forward 'variables/typography';
 @forward 'variables/sizes';
 @forward 'variables/breakpoints';

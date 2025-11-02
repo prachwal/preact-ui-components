@@ -221,10 +221,18 @@ $spacing-values: (
 }
 
 // Valid breakpoints for responsive utilities
-// Note: Breakpoints starting with numbers (like 2xl) are excluded due to SCSS class name limitations
+// Note: SCSS doesn't allow class names starting with numbers, so we use alternative naming
 $valid-responsive-breakpoints: ('sm', 'md', 'lg', 'xl');
 
-// Responsive utilities
+// Alternative breakpoint mapping for numeric breakpoints (2xl, 3xl, etc.)
+// Using 'xxl', 'xxxl' as alternatives to '2xl', '3xl'
+$alternative-breakpoints: (
+  'xxl': 1536px,
+  // Equivalent to 2xl
+  'xxxl': 1920px, // Equivalent to 3xl
+);
+
+// Responsive utilities for named breakpoints
 @each $breakpoint-name in $valid-responsive-breakpoints {
   $breakpoint-value: map.get($breakpoints, $breakpoint-name);
 
@@ -248,6 +256,30 @@ $valid-responsive-breakpoints: ('sm', 'md', 'lg', 'xl');
       .#{$breakpoint-name}\:text-right {
         text-align: right;
       }
+    }
+  }
+}
+
+// Responsive utilities for alternative breakpoints (xxl, xxxl, etc.)
+@each $breakpoint-name, $breakpoint-value in $alternative-breakpoints {
+  @media (min-width: $breakpoint-value) {
+    .#{$breakpoint-name}\:block {
+      display: block;
+    }
+    .#{$breakpoint-name}\:flex {
+      display: flex;
+    }
+    .#{$breakpoint-name}\:hidden {
+      display: none;
+    }
+    .#{$breakpoint-name}\:text-left {
+      text-align: left;
+    }
+    .#{$breakpoint-name}\:text-center {
+      text-align: center;
+    }
+    .#{$breakpoint-name}\:text-right {
+      text-align: right;
     }
   }
 }

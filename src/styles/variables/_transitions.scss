@@ -14,8 +14,11 @@ $transition-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 // Common transitions
 $transition-all: all $transition-duration-base $transition-timing-ease-in-out;
-$transition-colors: color $transition-duration-base $transition-timing-ease-in-out,
+$transition-colors:
+  color $transition-duration-base $transition-timing-ease-in-out,
   background-color $transition-duration-base $transition-timing-ease-in-out,
   border-color $transition-duration-base $transition-timing-ease-in-out;
-$transition-transform: transform $transition-duration-base $transition-timing-ease-in-out;
-$transition-opacity: opacity $transition-duration-base $transition-timing-ease-in-out;
+$transition-transform: transform $transition-duration-base
+  $transition-timing-ease-in-out;
+$transition-opacity: opacity $transition-duration-base
+  $transition-timing-ease-in-out;

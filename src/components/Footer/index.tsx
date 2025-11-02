@@ -1,4 +1,6 @@
 import type { JSX } from 'preact';
+import { memo } from 'preact/compat';
+import { appConfig } from '../../config/app';
 
 const StorybookIcon = (): JSX.Element => (
   <svg width='16' height='16' viewBox='0 0 16 16' fill='currentColor'>
@@ -18,15 +20,8 @@ const CoverageIcon = (): JSX.Element => (
   </svg>
 );
 
-export const Footer = (): JSX.Element => {
-  const isStorybookEnabled = __BUILD_STORYBOOK__ === 'true';
-  const isDocsEnabled = __BUILD_DOCS__ === 'true';
-  const isCoverageEnabled = __TEST_COVERAGE__ === 'true';
-  const basePath = __VITE_BASE_PATH__ === '/' ? '' : __VITE_BASE_PATH__;
-
-  const storybookUrl = isStorybookEnabled ? `${basePath}/storybook/` : '#';
-  const docsUrl = isDocsEnabled ? `${basePath}/docs/` : '#';
-  const coverageUrl = isCoverageEnabled ? `${basePath}/coverage/` : '#';
+const FooterComponent = (): JSX.Element => {
+  const { build, paths, version } = appConfig;
 
   return (
     <footer className='app-footer' role='contentinfo'>
@@ -35,42 +30,44 @@ export const Footer = (): JSX.Element => {
           <span className='build-status-label'>Build Status:</span>
           <div className='build-icons'>
             <a
-              href={storybookUrl}
-              className={`build-icon ${isStorybookEnabled ? 'enabled' : 'disabled'}`}
+              href={paths.storybook}
+              className={`build-icon ${build.storybook ? 'enabled' : 'disabled'}`}
               title='Storybook'
               aria-label='Open Storybook'
-              target={isStorybookEnabled ? '_blank' : undefined}
-              rel={isStorybookEnabled ? 'noopener noreferrer' : undefined}
+              target={build.storybook ? '_blank' : undefined}
+              rel={build.storybook ? 'noopener noreferrer' : undefined}
             >
               <StorybookIcon />
               <span className='icon-label'>SB</span>
             </a>
             <a
-              href={docsUrl}
-              className={`build-icon ${isDocsEnabled ? 'enabled' : 'disabled'}`}
+              href={paths.docs}
+              className={`build-icon ${build.docs ? 'enabled' : 'disabled'}`}
               title='Documentation'
               aria-label='Open Documentation'
-              target={isDocsEnabled ? '_blank' : undefined}
-              rel={isDocsEnabled ? 'noopener noreferrer' : undefined}
+              target={build.docs ? '_blank' : undefined}
+              rel={build.docs ? 'noopener noreferrer' : undefined}
             >
               <DocsIcon />
               <span className='icon-label'>Docs</span>
             </a>
             <a
-              href={coverageUrl}
-              className={`build-icon ${isCoverageEnabled ? 'enabled' : 'disabled'}`}
+              href={paths.coverage}
+              className={`build-icon ${build.coverage ? 'enabled' : 'disabled'}`}
               title='Test Coverage'
               aria-label='Open Coverage Report'
-              target={isCoverageEnabled ? '_blank' : undefined}
-              rel={isCoverageEnabled ? 'noopener noreferrer' : undefined}
+              target={build.coverage ? '_blank' : undefined}
+              rel={build.coverage ? 'noopener noreferrer' : undefined}
             >
               <CoverageIcon />
               <span className='icon-label'>Cov</span>
             </a>
           </div>
         </div>
-        <div className='app-version'>v{__APP_VERSION__}</div>
+        <div className='app-version'>v{version}</div>
       </div>
     </footer>
   );
 };
+
+export const Footer = memo(FooterComponent);

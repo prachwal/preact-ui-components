@@ -4,46 +4,58 @@
 // =============================================================================
 
 @use '../base/colors' as *;
+@use '../base/spacing' as *;
 @use '../utilities/mixins' as *;
 @use '../utilities/responsive' as *;
+
+// App-specific spacing variables
+$app-padding-sm: $spacing-4;
+$app-padding-md: $spacing-8;
+$app-padding-lg: $spacing-12;
+$app-margin-sm: $spacing-2;
+$app-margin-md: $spacing-4;
+$app-margin-lg: $spacing-8;
+$app-gap-sm: $spacing-3;
+$app-gap-md: $spacing-6;
+$app-gap-lg: $spacing-8;
 
 // App layout
 #app {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: $app-padding-sm;
   text-align: center;
 
   @include respond-to(md) {
-    padding: 2rem;
+    padding: $app-padding-md;
   }
 }
 
 // Tab navigation
 .tab-navigation {
   display: flex;
-  gap: 0.75rem;
+  gap: $app-gap-sm;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: $app-margin-lg;
   flex-wrap: wrap;
-  padding: 0.5rem;
+  padding: $app-margin-sm;
 }
 
 // Logo container
 .logo-container {
   display: flex;
-  gap: 2rem;
+  gap: $app-gap-lg;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: $app-margin-sm;
 }
 
 .logo {
   height: clamp(4em, 10vw, 6em);
-  padding: 1em;
+  padding: $app-padding-sm;
   will-change: filter;
   transition: filter 0.3s ease;
 
@@ -58,7 +70,7 @@
 
 // Card component
 .card {
-  padding: 2em;
+  padding: $app-padding-lg;
   background-color: $color-bg-subtle;
   border-radius: 8px;
   border: 1px solid $color-border-default;
@@ -71,7 +83,7 @@
   }
 
   p {
-    margin: 1em 0;
+    margin: $app-margin-sm 0;
     color: $color-text-secondary;
   }
 

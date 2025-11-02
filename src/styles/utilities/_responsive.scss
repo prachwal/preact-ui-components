@@ -35,14 +35,14 @@
 // Hide/show at breakpoints
 @mixin hide-from($breakpoint) {
   @include respond-to($breakpoint) {
-    display: none !important;
+    display: none;
   }
 }
 
 @mixin show-from($breakpoint) {
-  display: none !important;
+  display: none;
 
   @include respond-to($breakpoint) {
-    display: initial !important;
+    display: initial;
   }
 }

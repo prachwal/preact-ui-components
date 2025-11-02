@@ -52,21 +52,21 @@ $color-info-50: #e1f5fe;
 $color-info-500: #03a9f4; // Base
 $color-info-700: #0288d1;
 
-// Semantic usage
-$color-text-primary: $color-neutral-900;
-$color-text-secondary: $color-neutral-700;
-$color-text-disabled: $color-neutral-400;
-$color-text-inverse: #ffffff;
+// Semantic usage - Dark theme by default
+$color-text-primary: #ffffff; // White text on dark background
+$color-text-secondary: $color-neutral-300; // Light gray for secondary text
+$color-text-disabled: $color-neutral-500; // Medium gray for disabled text
+$color-text-inverse: $color-neutral-900; // Dark text on light elements
 
-// Background colors
-$color-bg-default: #ffffff;
-$color-bg-subtle: $color-neutral-50;
-$color-bg-hover: $color-neutral-100;
-$color-bg-active: $color-neutral-200;
-$color-bg-disabled: $color-neutral-100;
+// Background colors - Dark theme
+$color-bg-default: $color-neutral-900; // Dark background
+$color-bg-subtle: $color-neutral-800; // Slightly lighter dark
+$color-bg-hover: $color-neutral-700; // Hover state
+$color-bg-active: $color-neutral-600; // Active state
+$color-bg-disabled: $color-neutral-800; // Disabled state
 
-// Border colors
-$color-border-default: $color-neutral-300;
-$color-border-hover: $color-neutral-400;
-$color-border-focus: $color-primary-500;
-$color-border-error: $color-error-500;
+// Border colors - Dark theme
+$color-border-default: $color-neutral-700;
+$color-border-hover: $color-neutral-600;
+$color-border-focus: $color-primary-400; // Lighter primary for dark theme
+$color-border-error: $color-error-500; // Error color for dark theme

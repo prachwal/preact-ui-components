@@ -69,20 +69,92 @@
 
 // Form textarea
 .form-textarea {
-  @extend .form-input;
+  width: 100%;
+  padding: $spacing-2 $spacing-3;
+  border: $border-width-default solid $color-border-default;
+  border-radius: $border-radius-default;
+  background-color: $color-bg-default;
+  color: $color-text-primary;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  @include transition(border-color, box-shadow);
   resize: vertical;
   min-height: 100px;
+
+  &::placeholder {
+    color: $color-text-disabled;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-border-focus;
+    box-shadow: 0 0 0 3px color-fn.alpha($color-primary-500, 0.1);
+  }
+
+  &:disabled {
+    background-color: $color-bg-disabled;
+    cursor: not-allowed;
+  }
+
+  &--error {
+    border-color: $color-error-500;
+
+    &:focus {
+      box-shadow: 0 0 0 3px color-fn.alpha($color-error-500, 0.1);
+    }
+  }
+
+  &--success {
+    border-color: $color-success-500;
+  }
 }
 
 // Form select
 .form-select {
-  @extend .form-input;
+  width: 100%;
+  padding: $spacing-2 $spacing-3;
+  border: $border-width-default solid $color-border-default;
+  border-radius: $border-radius-default;
+  background-color: $color-bg-default;
+  color: $color-text-primary;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  @include transition(border-color, box-shadow);
   padding-right: $spacing-8;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right $spacing-3 center;
   background-size: 12px;
   appearance: none;
+
+  &::placeholder {
+    color: $color-text-disabled;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-border-focus;
+    box-shadow: 0 0 0 3px color-fn.alpha($color-primary-500, 0.1);
+  }
+
+  &:disabled {
+    background-color: $color-bg-disabled;
+    cursor: not-allowed;
+  }
+
+  &--error {
+    border-color: $color-error-500;
+
+    &:focus {
+      box-shadow: 0 0 0 3px color-fn.alpha($color-error-500, 0.1);
+    }
+  }
+
+  &--success {
+    border-color: $color-success-500;
+  }
 }
 
 // Form checkbox & radio
@@ -162,6 +234,8 @@
 
 // Form error message
 .form-error {
-  @extend .form-help;
+  display: block;
+  margin-top: $spacing-1;
+  font-size: $font-size-sm;
   color: $color-error-500;
 }
