@@ -11,6 +11,7 @@
   --color-bg-dark: oklch(18% 0.015 240);
   --color-bg-light: oklch(22% 0.02 240);
   --color-button-bg-dark: oklch(28% 0.03 240);
+  --color-button-bg-dark-hover: oklch(33% 0.035 240);
   --color-button-bg-light: oklch(85% 0.05 210);
 
   // Text colors
@@ -63,6 +64,7 @@
     --color-bg-dark: oklch(97% 0.005 240);
     --color-bg-light: oklch(99% 0.002 240);
     --color-button-bg-dark: oklch(92% 0.01 240);
+    --color-button-bg-dark-hover: oklch(88% 0.015 240);
     --color-button-bg-light: oklch(95% 0.005 240);
     --color-text-dark: oklch(20% 0.02 230);
     --color-text-light: oklch(30% 0.03 230);
@@ -278,9 +280,7 @@ button {
 
     &:hover:not(:disabled) {
       border-color: var(--color-primary);
-      background-color: oklch(
-        from var(--color-button-bg-dark) calc(l + 0.05) c h
-      );
+      background-color: var(--color-button-bg-dark-hover);
     }
   }
 
