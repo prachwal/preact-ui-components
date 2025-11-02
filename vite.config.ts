@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          // Use modern SCSS API - 'modern-compiler' or 'modern' for dart-sass 1.77.0+
+          // Use modern SCSS API for Sass 1.77.0+
           api: 'modern-compiler',
           // Import paths for SCSS modules
           loadPaths: [resolve(__dirname, 'src/styles')],

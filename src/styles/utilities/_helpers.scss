@@ -219,10 +219,15 @@ $spacing-values: (
   cursor: not-allowed;
 }
 
+// Valid breakpoints for responsive utilities
+// Note: Breakpoints starting with numbers (like 2xl) are excluded due to SCSS class name limitations
+$valid-responsive-breakpoints: ('sm', 'md', 'lg', 'xl');
+
 // Responsive utilities
-@each $breakpoint-name, $breakpoint-value in $breakpoints {
-  // Skip breakpoints starting with numbers (SCSS limitation)
-  @if not (str-index($breakpoint-name, '2') == 1) {
+@each $breakpoint-name in $valid-responsive-breakpoints {
+  $breakpoint-value: map-get($breakpoints, $breakpoint-name);
+  
+  @if $breakpoint-value {
     @media (min-width: $breakpoint-value) {
       .#{$breakpoint-name}\:block {
         display: block;

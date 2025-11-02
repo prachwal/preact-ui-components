@@ -4,6 +4,7 @@
 @use '../variables/borders' as *;
 @use '../variables/transitions' as *;
 @use '../utilities/mixins' as *;
+@use '../utilities/color-functions' as color-fn;
 
 // Form group
 .form-group {
@@ -45,7 +46,7 @@
   &:focus {
     outline: none;
     border-color: $color-border-focus;
-    box-shadow: 0 0 0 3px rgba($color-primary-500, 0.1);
+    box-shadow: 0 0 0 3px color-fn.alpha($color-primary-500, 0.1);
   }
 
   &:disabled {
@@ -57,7 +58,7 @@
     border-color: $color-error-500;
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba($color-error-500, 0.1);
+      box-shadow: 0 0 0 3px color-fn.alpha($color-error-500, 0.1);
     }
   }
 
