@@ -1,20 +1,21 @@
 {
-  "name": "@your-org/preact-ui-components",
-  "version": "1.0.0",
-  "description": "A collection of reusable Preact UI components with TypeScript support",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "name": "@prachwal/preact-ui-components",
+  "version": "0.0.1",
+  "description": "A modern, accessible, and reusable component library built with Preact, TypeScript, and SCSS",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": "./lib/styles.scss"
   },
   "files": [
-    "dist",
-    "src",
+    "lib",
+    "src/components",
+    "src/styles",
     "README.md",
     "LICENSE"
   ],
@@ -24,24 +25,29 @@
     "typescript",
     "react",
     "components",
-    "storybook"
+    "storybook",
+    "accessible",
+    "design-system",
+    "scss",
+    "vite"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Prachwal <prachwal@example.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/preact-ui-components.git"
+    "url": "https://github.com/prachwal/preact-ui-components.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/preact-ui-components/issues"
+    "url": "https://github.com/prachwal/preact-ui-components/issues"
   },
-  "homepage": "https://github.com/your-username/preact-ui-components#readme",
+  "homepage": "https://github.com/prachwal/preact-ui-components#readme",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run build:css",
-    "build:css": "sass src/styles/index.scss dist/styles.css --style=compressed",
-    "build:lib": "tsc -b && vite build --mode library",
+    "build": "tsc -b && vite build",
+    "build:lib": "tsc --project tsconfig.lib.json && cp -r src/styles lib/",
+    "build:css": "echo 'CSS will be processed by consumer'",
+    "build:publish": "npm run build:lib && npm run build:css",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o dist/storybook",
@@ -56,7 +62,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "npm run build && npm run test:run"
+    "prepublishOnly": "npm run build:publish && npm run test:run"
   },
   "peerDependencies": {
     "preact": ">=10.0.0"

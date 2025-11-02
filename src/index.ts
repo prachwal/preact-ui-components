@@ -1,2 +1,2 @@
-export { App } from './app';
-export * from './stories';
+import './styles/index.scss';
+export * from './components';
