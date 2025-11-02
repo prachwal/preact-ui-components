@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/preact';
 import { describe, expect, it, vi } from 'vitest';
-import type { ButtonProps } from './Button';
-import { Button } from './Button';
+import { Button, type ButtonProps } from '.';
 
 describe('Button', () => {
   const defaultProps: ButtonProps = {
