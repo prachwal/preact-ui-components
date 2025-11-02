@@ -1,6 +1,7 @@
 import type { JSX } from 'preact';
 import { useCallback, useMemo, useState } from 'preact/hooks';
 import preactLogo from './assets/preact.svg';
+import { Footer } from './components/Footer';
 import { Button } from './stories/Button';
 import { Page, StorybookContent } from './stories/Page';
 import viteLogo from '/vite.svg';
@@ -83,6 +84,7 @@ export function App(): JSX.Element {
         />
       </nav>
       {content}
+      <Footer />
     </Page>
   );
 }

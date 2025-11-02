@@ -7,6 +7,22 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      build_storybook:
+        description: 'Build Storybook documentation'
+        required: false
+        default: true
+        type: boolean
+      build_docs:
+        description: 'Build TypeDoc documentation'
+        required: false
+        default: true
+        type: boolean
+      enable_coverage:
+        description: 'Enable test coverage in footer'
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read
@@ -66,18 +82,39 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: '/preact-ui-components/'
-
-      - name: Build Storybook
-        run: npm run build-storybook
-
-      - name: Build documentation
-        run: npm run build:docs
+          VITE_BUILD_STORYBOOK: ${{ github.event.inputs.build_storybook || 'true' }}
+          VITE_BUILD_DOCS: ${{ github.event.inputs.build_docs || 'true' }}
+          VITE_ENABLE_COVERAGE: ${{ github.event.inputs.enable_coverage || 'true' }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: dist/
+          retention-days: 7
+
+      - name: Build Storybook
+        if: ${{ github.event.inputs.build_storybook == 'true' || github.event_name == 'push' }}
+        run: npm run build-storybook
+
+      - name: Upload storybook artifacts
+        if: ${{ github.event.inputs.build_storybook == 'true' || github.event_name == 'push' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-artifacts
+          path: dist/storybook/
+          retention-days: 7
+
+      - name: Build documentation
+        if: ${{ github.event.inputs.build_docs == 'true' || github.event_name == 'push' }}
+        run: npm run build:docs
+
+      - name: Upload docs artifacts
+        if: ${{ github.event.inputs.build_docs == 'true' || github.event_name == 'push' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-artifacts
+          path: dist/docs/
           retention-days: 7
 
 
@@ -107,9 +144,11 @@ jobs:
         run: npm run test:run
 
       - name: Generate coverage report
+        if: ${{ github.event.inputs.enable_coverage == 'true' || github.event_name == 'push' }}
         run: npm run test:coverage
 
       - name: Upload coverage artifacts
+        if: ${{ github.event.inputs.enable_coverage == 'true' || github.event_name == 'push' }}
         uses: actions/upload-artifact@v4
         with:
           name: coverage-artifacts
@@ -141,7 +180,22 @@ jobs:
           name: build-artifacts
           path: ./dist
 
+      - name: Download storybook artifacts
+        if: ${{ github.event.inputs.build_storybook == 'true' || github.event_name == 'push' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-artifacts
+          path: ./dist/storybook
+
+      - name: Download docs artifacts
+        if: ${{ github.event.inputs.build_docs == 'true' || github.event_name == 'push' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-artifacts
+          path: ./dist/docs
+
       - name: Download coverage artifacts
+        if: ${{ github.event.inputs.enable_coverage == 'true' || github.event_name == 'push' }}
         uses: actions/download-artifact@v4
         with:
           name: coverage-artifacts

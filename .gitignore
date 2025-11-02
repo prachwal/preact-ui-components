@@ -30,3 +30,4 @@ storybook-static
 *tns_test_results*.xml
 dist/junit.xml
 combined-code.txt
+.env
