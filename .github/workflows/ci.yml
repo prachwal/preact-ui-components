@@ -23,6 +23,11 @@ on:
         required: false
         default: true
         type: boolean
+      base_path:
+        description: 'Base path for deployment'
+        required: false
+        default: '/preact-ui-components'
+        type: string
 
 permissions:
   contents: read
@@ -81,7 +86,7 @@ jobs:
       - name: Build application
         run: npm run build
         env:
-          VITE_BASE_PATH: '/preact-ui-components/'
+          VITE_BASE_PATH: ${{ github.event.inputs.base_path || '/preact-ui-components' }}
           VITE_BUILD_STORYBOOK: ${{ github.event.inputs.build_storybook || 'true' }}
           VITE_BUILD_DOCS: ${{ github.event.inputs.build_docs || 'true' }}
           VITE_ENABLE_COVERAGE: ${{ github.event.inputs.enable_coverage || 'true' }}

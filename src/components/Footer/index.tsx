@@ -22,14 +22,11 @@ export const Footer = (): JSX.Element => {
   const isStorybookEnabled = __BUILD_STORYBOOK__ === 'true';
   const isDocsEnabled = __BUILD_DOCS__ === 'true';
   const isCoverageEnabled = __TEST_COVERAGE__ === 'true';
+  const basePath = __VITE_BASE_PATH__ === '/' ? '' : __VITE_BASE_PATH__;
 
-  const storybookUrl = isStorybookEnabled
-    ? __VITE_BASE_PATH__ + '/storybook/'
-    : '#';
-  const docsUrl = isDocsEnabled ? __VITE_BASE_PATH__ + '/docs/' : '#';
-  const coverageUrl = isCoverageEnabled
-    ? __VITE_BASE_PATH__ + '/coverage/'
-    : '#';
+  const storybookUrl = isStorybookEnabled ? basePath + '/storybook/' : '#';
+  const docsUrl = isDocsEnabled ? basePath + '/docs/' : '#';
+  const coverageUrl = isCoverageEnabled ? basePath + '/coverage/' : '#';
 
   return (
     <footer className='app-footer' role='contentinfo'>
