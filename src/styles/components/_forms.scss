@@ -1,0 +1,167 @@
+@use '../base/colors' as *;
+@use '../base/spacing' as *;
+@use '../variables/typography' as *;
+@use '../variables/borders' as *;
+@use '../variables/transitions' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/color-functions' as color-fn;
+
+// Form group
+.form-group {
+  margin-bottom: $spacing-4;
+}
+
+// Form label
+.form-label {
+  display: block;
+  margin-bottom: $spacing-2;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+
+  &--required::after {
+    content: '*';
+    margin-left: $spacing-1;
+    color: $color-error-500;
+  }
+}
+
+// Form input
+.form-input {
+  width: 100%;
+  padding: $spacing-2 $spacing-3;
+  border: $border-width-default solid $color-border-default;
+  border-radius: $border-radius-default;
+  background-color: $color-bg-default;
+  color: $color-text-primary;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  @include transition(border-color, box-shadow);
+
+  &::placeholder {
+    color: $color-text-disabled;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-border-focus;
+    box-shadow: 0 0 0 3px color-fn.alpha($color-primary-500, 0.1);
+  }
+
+  &:disabled {
+    background-color: $color-bg-disabled;
+    cursor: not-allowed;
+  }
+
+  &--error {
+    border-color: $color-error-500;
+
+    &:focus {
+      box-shadow: 0 0 0 3px color-fn.alpha($color-error-500, 0.1);
+    }
+  }
+
+  &--success {
+    border-color: $color-success-500;
+  }
+}
+
+// Form textarea
+.form-textarea {
+  @extend .form-input;
+  resize: vertical;
+  min-height: 100px;
+}
+
+// Form select
+.form-select {
+  @extend .form-input;
+  padding-right: $spacing-8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-3 center;
+  background-size: 12px;
+  appearance: none;
+}
+
+// Form checkbox & radio
+.form-checkbox,
+.form-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  input {
+    @include visually-hidden;
+  }
+
+  &__box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: $spacing-2;
+    border: $border-width-2 solid $color-border-default;
+    border-radius: $border-radius-sm;
+    @include transition(all);
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: none;
+    }
+  }
+
+  input:checked ~ &__box {
+    background-color: $color-primary-500;
+    border-color: $color-primary-500;
+
+    &::after {
+      display: block;
+    }
+  }
+
+  input:focus-visible ~ &__box {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+}
+
+.form-checkbox__box::after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form-radio__box {
+  border-radius: 50%;
+
+  &::after {
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Form help text
+.form-help {
+  display: block;
+  margin-top: $spacing-1;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+// Form error message
+.form-error {
+  @extend .form-help;
+  color: $color-error-500;
+}

@@ -24,9 +24,9 @@ export const Footer = (): JSX.Element => {
   const isCoverageEnabled = __TEST_COVERAGE__ === 'true';
   const basePath = __VITE_BASE_PATH__ === '/' ? '' : __VITE_BASE_PATH__;
 
-  const storybookUrl = isStorybookEnabled ? basePath + '/storybook/' : '#';
-  const docsUrl = isDocsEnabled ? basePath + '/docs/' : '#';
-  const coverageUrl = isCoverageEnabled ? basePath + '/coverage/' : '#';
+  const storybookUrl = isStorybookEnabled ? `${basePath}/storybook/` : '#';
+  const docsUrl = isDocsEnabled ? `${basePath}/docs/` : '#';
+  const coverageUrl = isCoverageEnabled ? `${basePath}/coverage/` : '#';
 
   return (
     <footer className='app-footer' role='contentinfo'>

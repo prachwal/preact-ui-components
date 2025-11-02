@@ -1,0 +1,65 @@
+@use '../base/colors' as *;
+@use '../base/spacing' as *;
+@use '../variables/typography' as *;
+@use '../variables/borders' as *;
+@use '../variables/shadows' as *;
+@use '../variables/transitions' as *;
+
+// Card base
+.card {
+  background-color: $color-bg-default;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: $transition-all;
+
+  &--elevated {
+    box-shadow: $elevation-2;
+
+    &:hover {
+      box-shadow: $elevation-3;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--bordered {
+    border: $border-width-default solid $color-border-default;
+  }
+
+  &--flat {
+    background-color: $color-bg-subtle;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__header {
+    padding: $spacing-4;
+    border-bottom: $border-width-default solid $color-border-default;
+  }
+
+  &__title {
+    margin: 0;
+    color: $color-text-primary;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__subtitle {
+    margin: $spacing-1 0 0;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+  }
+
+  &__body {
+    padding: $spacing-4;
+  }
+
+  &__footer {
+    padding: $spacing-4;
+    border-top: $border-width-default solid $color-border-default;
+    background-color: $color-bg-subtle;
+  }
+}

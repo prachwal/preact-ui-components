@@ -1,0 +1,82 @@
+@use '../variables/z-index' as z-index-vars;
+@use '../variables/breakpoints' as breakpoint-vars;
+
+// Strip unit from value
+@function strip-unit($value) {
+  @return calc($value / ($value * 0 + 1));
+}
+
+// Convert px to rem
+@function rem($pixels, $context: 16) {
+  @if unitless($pixels) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if unitless($context) {
+    $context: $context * 1px;
+  }
+
+  @return calc($pixels / $context * 1rem);
+}
+
+// Convert px to em
+@function em($pixels, $context: 16) {
+  @if unitless($pixels) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if unitless($context) {
+    $context: $context * 1px;
+  }
+
+  @return calc($pixels / $context * 1em);
+}
+
+// Lighten color (tint)
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// Darken color (shade)
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Calculate contrast color (black or white)
+@function contrast-color($color, $light: white, $dark: black) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000);
+
+  @return if($yiq >= 128, $dark, $light);
+}
+
+// Get z-index from map
+@function z($layer) {
+  @if map-has-key(z-index-vars.$z-layers, $layer) {
+    @return map-get(z-index-vars.$z-layers, $layer);
+  }
+
+  @warn "Z-index layer '#{$layer}' not found";
+  @return 0;
+}
+
+// Get breakpoint value
+@function breakpoint($name) {
+  @if map-has-key(breakpoint-vars.$breakpoints, $name) {
+    @return map-get(breakpoint-vars.$breakpoints, $name);
+  }
+
+  @warn "Breakpoint '#{$name}' not found";
+  @return null;
+}
+
+// Deep map get
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}

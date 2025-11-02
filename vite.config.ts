@@ -24,6 +24,25 @@ export default defineConfig(({ mode }) => {
   return {
     base: env.VITE_BASE_PATH || '/',
     plugins: [preact()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // Use modern SCSS API for Sass 1.77.0+
+          api: 'modern-compiler',
+          // Import paths for SCSS modules
+          loadPaths: [resolve(__dirname, 'src/styles')],
+          // Silence deprecation warnings for legacy code
+          silenceDeprecations: ['legacy-js-api'],
+        },
+      },
+    },
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, 'src'),
+        '@styles': resolve(__dirname, 'src/styles'),
+        '@components': resolve(__dirname, 'src/components'),
+      },
+    },
     define: {
       __APP_VERSION__: JSON.stringify(packageJson.version),
       __BUILD_STORYBOOK__: JSON.stringify(env.VITE_BUILD_STORYBOOK || 'false'),

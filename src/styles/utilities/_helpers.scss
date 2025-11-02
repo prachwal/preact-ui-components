@@ -1,0 +1,252 @@
+@use '../variables/breakpoints' as *;
+@use '../base/spacing' as *;
+@use '../base/colors' as *;
+@use '../variables/typography' as *;
+@use '../variables/borders' as *;
+@use '../variables/shadows' as *;
+
+// Display utilities
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.grid {
+  display: grid;
+}
+.inline-grid {
+  display: inline-grid;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.hidden {
+  display: none;
+}
+
+// Position
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.sticky {
+  position: sticky;
+}
+
+// Text alignment
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+// Font weight
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// Font size
+.text-xs {
+  font-size: $font-size-xs;
+}
+.text-sm {
+  font-size: $font-size-sm;
+}
+.text-base {
+  font-size: $font-size-base;
+}
+.text-lg {
+  font-size: $font-size-lg;
+}
+.text-xl {
+  font-size: $font-size-xl;
+}
+
+// Spacing utilities (selected sizes)
+$spacing-values: (
+  '0': $spacing-0,
+  '1': $spacing-1,
+  '2': $spacing-2,
+  '3': $spacing-3,
+  '4': $spacing-4,
+  '5': $spacing-5,
+  '6': $spacing-6,
+  '8': $spacing-8,
+  '10': $spacing-10,
+  '12': $spacing-12,
+  '16': $spacing-16,
+  '20': $spacing-20,
+  '24': $spacing-24,
+);
+
+@each $name, $value in $spacing-values {
+  .p-#{$name} {
+    padding: $value;
+  }
+  .pt-#{$name} {
+    padding-top: $value;
+  }
+  .pr-#{$name} {
+    padding-right: $value;
+  }
+  .pb-#{$name} {
+    padding-bottom: $value;
+  }
+  .pl-#{$name} {
+    padding-left: $value;
+  }
+  .px-#{$name} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .py-#{$name} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+
+  .m-#{$name} {
+    margin: $value;
+  }
+  .mt-#{$name} {
+    margin-top: $value;
+  }
+  .mr-#{$name} {
+    margin-right: $value;
+  }
+  .mb-#{$name} {
+    margin-bottom: $value;
+  }
+  .ml-#{$name} {
+    margin-left: $value;
+  }
+  .mx-#{$name} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .my-#{$name} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+}
+
+// Auto margin
+.m-auto {
+  margin: auto;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+// Width/Height
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+// Border radius
+.rounded {
+  border-radius: $border-radius-default;
+}
+.rounded-md {
+  border-radius: $border-radius-md;
+}
+.rounded-lg {
+  border-radius: $border-radius-lg;
+}
+.rounded-full {
+  border-radius: $border-radius-full;
+}
+
+// Shadows
+.shadow {
+  box-shadow: $shadow-default;
+}
+.shadow-md {
+  box-shadow: $shadow-md;
+}
+.shadow-lg {
+  box-shadow: $shadow-lg;
+}
+.shadow-none {
+  box-shadow: $shadow-none;
+}
+
+// Overflow
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+
+// Cursor
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+// Valid breakpoints for responsive utilities
+// Note: Breakpoints starting with numbers (like 2xl) are excluded due to SCSS class name limitations
+$valid-responsive-breakpoints: ('sm', 'md', 'lg', 'xl');
+
+// Responsive utilities
+@each $breakpoint-name in $valid-responsive-breakpoints {
+  $breakpoint-value: map-get($breakpoints, $breakpoint-name);
+  
+  @if $breakpoint-value {
+    @media (min-width: $breakpoint-value) {
+      .#{$breakpoint-name}\:block {
+        display: block;
+      }
+      .#{$breakpoint-name}\:flex {
+        display: flex;
+      }
+      .#{$breakpoint-name}\:hidden {
+        display: none;
+      }
+      .#{$breakpoint-name}\:text-left {
+        text-align: left;
+      }
+      .#{$breakpoint-name}\:text-center {
+        text-align: center;
+      }
+      .#{$breakpoint-name}\:text-right {
+        text-align: right;
+      }
+    }
+  }
+}
