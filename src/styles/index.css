@@ -1,5 +1,4 @@
 :root {
-  /* Color Variables - Dark Mode (Default) */
   --color-primary: oklch(55% 0.15 240);
   --color-primary-hover: oklch(60% 0.18 245);
   --color-primary-light: oklch(70% 0.12 235);
@@ -219,7 +218,6 @@ button:focus-visible {
 
 /* Page Component */
 .page {
-  /* NEVER USE LIGHT COLORS - Always use CSS variables for consistent theming */
   margin: 0 auto;
   padding: 48px 20px;
   max-width: 600px;

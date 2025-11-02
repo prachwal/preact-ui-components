@@ -19,6 +19,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "build:docs": "typedoc",
+    "combine": "node combine-files.js",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",

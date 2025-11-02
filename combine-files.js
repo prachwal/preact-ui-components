@@ -47,6 +47,16 @@ function combineFiles() {
     combinedContent += content;
   }
 
+  // Add file list at the end
+  combinedContent += `\n\n${'='.repeat(80)}\n`;
+  combinedContent += `COMBINED FILES LIST\n`;
+  combinedContent += `${'='.repeat(80)}\n\n`;
+  combinedContent += `Total files combined: ${files.length}\n\n`;
+  files.forEach((file, index) => {
+    const relativePath = path.relative('.', file);
+    combinedContent += `${index + 1}. ${relativePath}\n`;
+  });
+
   fs.writeFileSync(outputFile, combinedContent);
   console.log(`Combined ${files.length} files into ${outputFile}`);
 }

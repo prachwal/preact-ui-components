@@ -1,10 +1,13 @@
+import type { ComponentProps } from 'preact';
+
 /** Primary UI component for user interaction */
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ComponentProps<'button'> {
   primary?: boolean;
   backgroundColor?: string | null;
   size?: 'small' | 'medium' | 'large';
   label: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 export const Button: preact.FunctionComponent<ButtonProps> = ({
@@ -17,7 +20,9 @@ export const Button: preact.FunctionComponent<ButtonProps> = ({
 }) => {
   const mode = primary ? 'button--primary' : 'button--secondary';
   const sizeClass = `button--${size}`;
-  const classes = ['button', sizeClass, mode].filter(Boolean).join(' ');
+  const classes = ['button', sizeClass, mode, className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <button
