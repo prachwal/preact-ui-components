@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
   console.log('VITE_BUILD_STORYBOOK:', env.VITE_BUILD_STORYBOOK);
   console.log('VITE_BUILD_DOCS:', env.VITE_BUILD_DOCS);
   console.log('VITE_ENABLE_COVERAGE:', env.VITE_ENABLE_COVERAGE);
+  console.log('VITE_BASE_PATH:', env.VITE_BASE_PATH);
 
   return {
     base: env.VITE_BASE_PATH || '/',
@@ -28,6 +29,7 @@ export default defineConfig(({ mode }) => {
       __BUILD_STORYBOOK__: JSON.stringify(env.VITE_BUILD_STORYBOOK || 'false'),
       __BUILD_DOCS__: JSON.stringify(env.VITE_BUILD_DOCS || 'false'),
       __TEST_COVERAGE__: JSON.stringify(env.VITE_ENABLE_COVERAGE || 'false'),
+      __VITE_BASE_PATH__: JSON.stringify(env.VITE_BASE_PATH || '/'),
     },
     test: {
       globals: true,
