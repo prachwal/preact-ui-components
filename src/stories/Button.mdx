@@ -1,0 +1,57 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import { ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button Component
+
+The Button component is a primary UI element for user interaction. It supports various sizes, states, and styling options.
+
+## Overview
+
+Buttons are used to trigger actions, submit forms, or navigate users through an interface. This component provides consistent styling and behavior across the application.
+
+## Basic Usage
+
+<Canvas of={ButtonStories.Primary} />
+
+## Variants
+
+### Primary Button
+<Canvas of={ButtonStories.Primary} />
+
+### Secondary Button
+<Canvas of={ButtonStories.Secondary} />
+
+## Sizes
+
+### Large Button
+<Canvas of={ButtonStories.Large} />
+
+### Small Button
+<Canvas of={ButtonStories.Small} />
+
+## Props
+<ArgTypes of={ButtonStories.Primary} />
+
+## Usage Examples
+
+```jsx
+import { Button } from './Button';
+
+// Primary button
+<Button primary label="Save Changes" onClick={handleSave} />
+
+// Secondary button
+<Button label="Cancel" onClick={handleCancel} />
+
+// Large button
+<Button size="large" label="Get Started" onClick={handleStart} />
+
+// Small button
+<Button size="small" label="Edit" onClick={handleEdit} />
+
+// Custom background
+<Button backgroundColor="#ff6b6b" label="Danger" onClick={handleDanger} />
+```

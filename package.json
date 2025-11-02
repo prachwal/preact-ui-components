@@ -1,0 +1,30 @@
+{
+  "name": "preact-ui-components",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o dist/storybook",
+    "build:storybook": "storybook build -o dist/storybook",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "preact": "^10.27.2"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.2",
+    "@preact/preset-vite": "^2.10.2",
+    "@storybook/addon-a11y": "^10.0.2",
+    "@storybook/addon-docs": "^10.0.2",
+    "@storybook/addon-vitest": "^10.0.2",
+    "@storybook/preact-vite": "^10.0.2",
+    "@types/node": "^24.9.2",
+    "storybook": "^10.0.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.12"
+  }
+}

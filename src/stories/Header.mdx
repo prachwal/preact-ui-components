@@ -1,0 +1,49 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import { ArgTypes } from '@storybook/addon-docs/blocks';
+import * as HeaderStories from './Header.stories';
+
+<Meta of={HeaderStories} />
+
+# Header Component
+
+The Header component provides navigation and user authentication controls for the application. It displays the application logo and conditionally shows login/logout buttons based on user state.
+
+## Overview
+
+The Header component is typically used at the top of pages to provide consistent navigation and user authentication UI across the application.
+
+## Basic Usage
+
+<Canvas of={HeaderStories.LoggedOut} />
+
+## States
+
+### Logged Out State
+<Canvas of={HeaderStories.LoggedOut} />
+
+### Logged In State
+<Canvas of={HeaderStories.LoggedIn} />
+
+## Props
+<ArgTypes of={HeaderStories.LoggedOut} />
+
+## Usage Examples
+
+```jsx
+import { Header } from './Header';
+
+// Logged out state
+<Header
+  onLogin={handleLogin}
+  onLogout={handleLogout}
+  onCreateAccount={handleCreateAccount}
+/>
+
+// Logged in state
+<Header
+  user={{ name: 'John Doe' }}
+  onLogin={handleLogin}
+  onLogout={handleLogout}
+  onCreateAccount={handleCreateAccount}
+/>
+```

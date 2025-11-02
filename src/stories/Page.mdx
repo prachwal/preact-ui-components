@@ -1,0 +1,58 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import { ArgTypes } from '@storybook/addon-docs/blocks';
+import * as PageStories from './Page.stories';
+
+<Meta of={PageStories} />
+
+# Page Component
+
+The Page component demonstrates a complete page layout combining the Header component with content sections. It showcases component composition and interaction testing patterns.
+
+## Overview
+
+The Page component represents a typical application page that includes navigation (Header) and main content. It demonstrates how to build complex UIs by composing smaller components and how to test user interactions.
+
+## Basic Usage
+
+<Canvas of={PageStories.LoggedOut} />
+
+## States
+
+### Logged Out State
+<Canvas of={PageStories.LoggedOut} />
+
+### Logged In State
+<Canvas of={PageStories.LoggedIn} />
+
+## Props
+<ArgTypes of={PageStories.LoggedOut} />
+
+## Usage Examples
+
+```jsx
+import { Page } from './Page';
+
+// Simple usage - component manages its own state
+<Page />
+```
+
+## Interaction Testing
+
+The Page component includes examples of Storybook's interaction testing capabilities. The "Logged In" story demonstrates how to test user interactions:
+
+```javascript
+export const LoggedIn = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const loginButton = await canvas.getByRole('button', {
+      name: /Log in/i,
+    });
+    await userEvent.click(loginButton);
+  },
+};
+```
+
+This test:
+1. Finds the login button using accessibility role and text
+2. Simulates a user click
+3. Verifies the interaction works as expected
