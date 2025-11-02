@@ -1,11 +1,12 @@
-import type { Preview } from '@storybook/preact-vite'
+import type { Preview } from '@storybook/preact-vite';
+import '../src/styles/index.css';
 
 const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
   },

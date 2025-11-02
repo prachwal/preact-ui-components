@@ -1,7 +1,7 @@
-import { userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/preact';
+import { userEvent, within } from 'storybook/test';
 
-import { Page } from './Page';
+import { Page, StorybookContent } from './Page';
 
 const meta: Meta = {
   title: 'Example/Page',
@@ -15,6 +15,12 @@ export default meta;
 type Story = StoryObj;
 
 export const LoggedOut: Story = {};
+
+export const WithStorybookContent: Story = {
+  args: {
+    children: <StorybookContent />,
+  },
+};
 
 // More on component testing: https://storybook.js.org/docs/writing-tests/interaction-testing
 export const LoggedIn: Story = {

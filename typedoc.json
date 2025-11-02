@@ -1,0 +1,15 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "dist/docs",
+  "readme": "README.md",
+  "name": "Preact UI Components",
+  "includeVersion": true,
+  "exclude": ["**/*.stories.tsx", "**/*.test.tsx", "**/node_modules/**"],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "theme": "default",
+  "plugin": [],
+  "gitRevision": "main"
+}

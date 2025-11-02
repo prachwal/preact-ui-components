@@ -1,27 +1,28 @@
-import './button.css';
-
 /** Primary UI component for user interaction */
-export interface ButtonProps {
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   backgroundColor?: string | null;
   size?: 'small' | 'medium' | 'large';
   label: string;
   onClick?: () => void;
-  [key: string]: any;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: preact.FunctionComponent<ButtonProps> = ({
   primary = false,
   backgroundColor = null,
   size = 'medium',
   label,
+  className,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary ? 'button--primary' : 'button--secondary';
+  const sizeClass = `button--${size}`;
+  const classes = ['button', sizeClass, mode].filter(Boolean).join(' ');
+
   return (
     <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      type='button'
+      className={classes}
       style={backgroundColor ? { backgroundColor } : undefined}
       {...props}
     >

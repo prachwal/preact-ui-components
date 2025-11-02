@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/preact-ui-components.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,21 +14,43 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o dist/storybook",
     "build:storybook": "storybook build -o dist/storybook",
-    "lint": "tsc --noEmit"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build:docs": "typedoc",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "preact": "^10.27.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",
+    "@eslint/js": "^9.39.0",
     "@preact/preset-vite": "^2.10.2",
     "@storybook/addon-a11y": "^10.0.2",
     "@storybook/addon-docs": "^10.0.2",
     "@storybook/addon-vitest": "^10.0.2",
     "@storybook/preact-vite": "^10.0.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/preact": "^3.2.4",
     "@types/node": "^24.9.2",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "@vitest/coverage-v8": "^4.0.6",
+    "@vitest/ui": "^4.0.6",
+    "eslint": "^9.39.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "jsdom": "^27.1.0",
+    "prettier": "^3.6.2",
     "storybook": "^10.0.2",
+    "typedoc": "^0.28.14",
     "typescript": "~5.9.3",
-    "vite": "^7.1.12"
+    "vite": "^7.1.12",
+    "vitest": "^4.0.6"
   }
 }

@@ -55,6 +55,9 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
+      - name: Build documentation
+        run: npm run build:docs
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -62,6 +65,7 @@ jobs:
           path: |
             dist/
             dist/storybook/
+            dist/docs/
           retention-days: 7
 
   test:
@@ -85,6 +89,26 @@ jobs:
 
       - name: Run TypeScript check
         run: npm run lint
+
+      - name: Run tests
+        run: npm run test:run
+
+      - name: Generate coverage report
+        run: npm run test:coverage
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: dist/coverage/
+          retention-days: 7
+
+      - name: Upload JUnit test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-report
+          path: dist/junit.xml
+          retention-days: 7
 
   deploy:
     runs-on: ubuntu-latest
