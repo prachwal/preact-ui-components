@@ -1,0 +1,30 @@
+import { ArgTypes, Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import * as FooterStories from './Footer.stories';
+
+<Meta of={FooterStories} />
+
+# Footer Component
+
+The Footer component displays build status information and application version at the bottom of the page.
+
+## Overview
+
+The Footer provides quick access to build-related resources like Storybook, documentation, and test coverage reports, along with displaying the current application version.
+
+## Basic Usage
+
+<Canvas of={FooterStories.Default} />
+
+## Props
+
+The Footer component does not accept any props.
+
+<ArgTypes of={FooterStories.Default} />
+
+## Usage Example
+
+```jsx
+import { Footer } from './Footer';
+
+<Footer />;
+```
