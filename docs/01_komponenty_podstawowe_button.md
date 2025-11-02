@@ -1222,4 +1222,3 @@ const ButtonGroup = memo<ButtonGroupProps>(
 - Upewnij się, że callbacki są memoizowane
 - Unikaj tworzenia nowych funkcji w render
 - Użyj `React.memo` dla komponentów rodziców
-

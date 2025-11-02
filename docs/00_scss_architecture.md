@@ -111,6 +111,7 @@ src/styles/
 ### Filozofia Design Tokens
 
 Design tokens to centralne zmienne definiujące wszystkie aspekty wizualne systemu. Zapewniają one:
+
 - **Konsystencję** - jednolity wygląd w całej aplikacji
 - **Łatwość aktualizacji** - zmiana w jednym miejscu
 - **Semantyczny naming** - zrozumiałe nazwy
@@ -118,7 +119,7 @@ Design tokens to centralne zmienne definiujące wszystkie aspekty wizualne syste
 
 ### Hierarchia Tokenów
 
-```
+```text
 Variables (Design Tokens)
     ↓
 Base Styles (Colors, Typography, Spacing)
@@ -152,6 +153,7 @@ $color-primary-900: #0d47a1;
 ```
 
 **Użycie:**
+
 - `500` - Podstawowy kolor dla przycisków, linków
 - `600-700` - Stany hover
 - `800-900` - Stany active/pressed
@@ -173,6 +175,7 @@ $color-secondary-900: #880e4f;
 ```
 
 **Użycie:**
+
 - Akcenty i podkreślenia
 - FAB buttons
 - Highlighting ważnych elementów
@@ -180,16 +183,16 @@ $color-secondary-900: #880e4f;
 #### Neutral - Skala Szarości
 
 ```scss
-$color-neutral-50: #fafafa;   // Jasne tła
-$color-neutral-100: #f5f5f5;  // Subtle backgrounds
-$color-neutral-200: #eeeeee;  // Borders light
-$color-neutral-300: #e0e0e0;  // Borders default
-$color-neutral-400: #bdbdbd;  // Disabled elements
-$color-neutral-500: #9e9e9e;  // Ikony, placeholders
-$color-neutral-600: #757575;  // Tekst secondary
-$color-neutral-700: #616161;  // Tekst primary dark mode
-$color-neutral-800: #424242;  // Tła dark mode
-$color-neutral-900: #212121;  // Tekst primary, tła deep
+$color-neutral-50: #fafafa; // Jasne tła
+$color-neutral-100: #f5f5f5; // Subtle backgrounds
+$color-neutral-200: #eeeeee; // Borders light
+$color-neutral-300: #e0e0e0; // Borders default
+$color-neutral-400: #bdbdbd; // Disabled elements
+$color-neutral-500: #9e9e9e; // Ikony, placeholders
+$color-neutral-600: #757575; // Tekst secondary
+$color-neutral-700: #616161; // Tekst primary dark mode
+$color-neutral-800: #424242; // Tła dark mode
+$color-neutral-900: #212121; // Tekst primary, tła deep
 ```
 
 ### Kolory Semantyczne
@@ -238,23 +241,23 @@ $color-info-700: #0288d1;
 
 ```scss
 // Text colors
-$color-text-primary: $color-neutral-900;      // Główny tekst
-$color-text-secondary: $color-neutral-700;    // Tekst pomocniczy
-$color-text-disabled: $color-neutral-400;     // Tekst wyłączony
-$color-text-inverse: #ffffff;                 // Tekst na ciemnym tle
+$color-text-primary: $color-neutral-900; // Główny tekst
+$color-text-secondary: $color-neutral-700; // Tekst pomocniczy
+$color-text-disabled: $color-neutral-400; // Tekst wyłączony
+$color-text-inverse: #ffffff; // Tekst na ciemnym tle
 
 // Background colors
-$color-bg-default: #ffffff;                   // Główne tło
-$color-bg-subtle: $color-neutral-50;          // Subtelne tło
-$color-bg-hover: $color-neutral-100;          // Stan hover
-$color-bg-active: $color-neutral-200;         // Stan active
-$color-bg-disabled: $color-neutral-100;       // Wyłączony
+$color-bg-default: #ffffff; // Główne tło
+$color-bg-subtle: $color-neutral-50; // Subtelne tło
+$color-bg-hover: $color-neutral-100; // Stan hover
+$color-bg-active: $color-neutral-200; // Stan active
+$color-bg-disabled: $color-neutral-100; // Wyłączony
 
 // Border colors
-$color-border-default: $color-neutral-300;    // Standardowa ramka
-$color-border-hover: $color-neutral-400;      // Ramka hover
-$color-border-focus: $color-primary-500;      // Ramka focus
-$color-border-error: $color-error-500;        // Ramka błędu
+$color-border-default: $color-neutral-300; // Standardowa ramka
+$color-border-hover: $color-neutral-400; // Ramka hover
+$color-border-focus: $color-primary-500; // Ramka focus
+$color-border-error: $color-error-500; // Ramka błędu
 ```
 
 ### Przykłady Użycia Kolorów
@@ -311,8 +314,8 @@ $color-border-error: $color-error-500;        // Ramka błędu
 ```scss
 // Primary - Sans-serif system stack
 $font-family-primary:
-  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 
-  'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
 // Secondary - Serif dla nagłówków/akcentów
 $font-family-secondary: 'Georgia', 'Times New Roman', serif;
@@ -324,12 +327,12 @@ $font-family-mono: 'Fira Code', 'Courier New', monospace;
 ### Font Sizes - Skala Modularna (1.250 - Major Third)
 
 ```scss
-$font-size-xs: 0.64rem;   // 10.24px - małe etykiety
-$font-size-sm: 0.8rem;    // 12.8px  - pomocniczy tekst
-$font-size-base: 1rem;    // 16px    - podstawowy tekst
-$font-size-md: 1.25rem;   // 20px    - większy tekst
-$font-size-lg: 1.563rem;  // 25px    - małe nagłówki
-$font-size-xl: 1.953rem;  // 31.25px - średnie nagłówki
+$font-size-xs: 0.64rem; // 10.24px - małe etykiety
+$font-size-sm: 0.8rem; // 12.8px  - pomocniczy tekst
+$font-size-base: 1rem; // 16px    - podstawowy tekst
+$font-size-md: 1.25rem; // 20px    - większy tekst
+$font-size-lg: 1.563rem; // 25px    - małe nagłówki
+$font-size-xl: 1.953rem; // 31.25px - średnie nagłówki
 $font-size-2xl: 2.441rem; // 39px    - duże nagłówki
 $font-size-3xl: 3.052rem; // 48.83px - bardzo duże
 $font-size-4xl: 3.815rem; // 61px    - hero text
@@ -337,6 +340,7 @@ $font-size-5xl: 4.768rem; // 76.29px - display text
 ```
 
 **Uzasadnienie skali 1.250:**
+
 - Harmonijne proporcje wizualne
 - Czytelna hierarchia
 - Dobrze skaluje się w responsywnym designie
@@ -344,24 +348,24 @@ $font-size-5xl: 4.768rem; // 76.29px - display text
 ### Font Weights
 
 ```scss
-$font-weight-thin: 100;       // Bardzo cienki
-$font-weight-light: 300;      // Lekki
-$font-weight-normal: 400;     // Normalny (default)
-$font-weight-medium: 500;     // Średni
-$font-weight-semibold: 600;   // Pół-bold
-$font-weight-bold: 700;       // Bold
-$font-weight-extrabold: 800;  // Extra bold
-$font-weight-black: 900;      // Najciemniejszy
+$font-weight-thin: 100; // Bardzo cienki
+$font-weight-light: 300; // Lekki
+$font-weight-normal: 400; // Normalny (default)
+$font-weight-medium: 500; // Średni
+$font-weight-semibold: 600; // Pół-bold
+$font-weight-bold: 700; // Bold
+$font-weight-extrabold: 800; // Extra bold
+$font-weight-black: 900; // Najciemniejszy
 ```
 
 ### Line Heights
 
 ```scss
-$line-height-tight: 1.25;     // Nagłówki, kompaktowy tekst
-$line-height-snug: 1.375;     // Lekko luźniejszy
-$line-height-normal: 1.5;     // Standardowy (default)
-$line-height-relaxed: 1.625;  // Wygodny do czytania
-$line-height-loose: 2;        // Bardzo przestronny
+$line-height-tight: 1.25; // Nagłówki, kompaktowy tekst
+$line-height-snug: 1.375; // Lekko luźniejszy
+$line-height-normal: 1.5; // Standardowy (default)
+$line-height-relaxed: 1.625; // Wygodny do czytania
+$line-height-loose: 2; // Bardzo przestronny
 ```
 
 ### Przykłady Typografii
@@ -404,49 +408,49 @@ code {
 System spacing oparty na jednostce bazowej 8px (0.5rem), co zapewnia spójność i łatwość w tworzeniu layoutów.
 
 ```scss
-$spacing-0: 0;              // 0px    - brak odstępu
-$spacing-px: 1px;           // 1px    - cienkie linie
-$spacing-0-5: 0.125rem;     // 2px    - bardzo małe
-$spacing-1: 0.25rem;        // 4px    - małe
-$spacing-1-5: 0.375rem;     // 6px
-$spacing-2: 0.5rem;         // 8px    - base unit
-$spacing-2-5: 0.625rem;     // 10px
-$spacing-3: 0.75rem;        // 12px
-$spacing-3-5: 0.875rem;     // 14px
-$spacing-4: 1rem;           // 16px   - standard
-$spacing-5: 1.25rem;        // 20px
-$spacing-6: 1.5rem;         // 24px
-$spacing-7: 1.75rem;        // 28px
-$spacing-8: 2rem;           // 32px
-$spacing-9: 2.25rem;        // 36px
-$spacing-10: 2.5rem;        // 40px
-$spacing-12: 3rem;          // 48px
-$spacing-14: 3.5rem;        // 56px
-$spacing-16: 4rem;          // 64px
-$spacing-20: 5rem;          // 80px
-$spacing-24: 6rem;          // 96px
-$spacing-28: 7rem;          // 112px
-$spacing-32: 8rem;          // 128px
-$spacing-36: 9rem;          // 144px
-$spacing-40: 10rem;         // 160px
+$spacing-0: 0; // 0px    - brak odstępu
+$spacing-px: 1px; // 1px    - cienkie linie
+$spacing-0-5: 0.125rem; // 2px    - bardzo małe
+$spacing-1: 0.25rem; // 4px    - małe
+$spacing-1-5: 0.375rem; // 6px
+$spacing-2: 0.5rem; // 8px    - base unit
+$spacing-2-5: 0.625rem; // 10px
+$spacing-3: 0.75rem; // 12px
+$spacing-3-5: 0.875rem; // 14px
+$spacing-4: 1rem; // 16px   - standard
+$spacing-5: 1.25rem; // 20px
+$spacing-6: 1.5rem; // 24px
+$spacing-7: 1.75rem; // 28px
+$spacing-8: 2rem; // 32px
+$spacing-9: 2.25rem; // 36px
+$spacing-10: 2.5rem; // 40px
+$spacing-12: 3rem; // 48px
+$spacing-14: 3.5rem; // 56px
+$spacing-16: 4rem; // 64px
+$spacing-20: 5rem; // 80px
+$spacing-24: 6rem; // 96px
+$spacing-28: 7rem; // 112px
+$spacing-32: 8rem; // 128px
+$spacing-36: 9rem; // 144px
+$spacing-40: 10rem; // 160px
 ```
 
 ### Rozmiary Komponentów
 
 ```scss
 // Component heights
-$size-xs: 1.5rem;   // 24px - bardzo małe komponenty
-$size-sm: 2rem;     // 32px - małe przyciski, inputy
-$size-md: 2.5rem;   // 40px - standardowe (default)
-$size-lg: 3rem;     // 48px - duże komponenty
-$size-xl: 3.5rem;   // 56px - bardzo duże
-$size-2xl: 4rem;    // 64px - ekstra duże
+$size-xs: 1.5rem; // 24px - bardzo małe komponenty
+$size-sm: 2rem; // 32px - małe przyciski, inputy
+$size-md: 2.5rem; // 40px - standardowe (default)
+$size-lg: 3rem; // 48px - duże komponenty
+$size-xl: 3.5rem; // 56px - bardzo duże
+$size-2xl: 4rem; // 64px - ekstra duże
 
 // Container widths
-$container-sm: 640px;   // Mobile landscape
-$container-md: 768px;   // Tablet
-$container-lg: 1024px;  // Desktop
-$container-xl: 1280px;  // Large desktop
+$container-sm: 640px; // Mobile landscape
+$container-md: 768px; // Tablet
+$container-lg: 1024px; // Desktop
+$container-xl: 1280px; // Large desktop
 $container-2xl: 1536px; // Extra large
 ```
 
@@ -460,11 +464,11 @@ Mobile-first approach - zaczynamy od najmniejszych ekranów i rozbudowujemy w g�
 
 ```scss
 // Breakpoint values
-$breakpoint-sm: 640px;    // Small devices (landscape phones)
-$breakpoint-md: 768px;    // Medium devices (tablets)
-$breakpoint-lg: 1024px;   // Large devices (laptops)
-$breakpoint-xl: 1280px;   // Extra large (desktops)
-$breakpoint-2xl: 1536px;  // 2X large (large desktops)
+$breakpoint-sm: 640px; // Small devices (landscape phones)
+$breakpoint-md: 768px; // Medium devices (tablets)
+$breakpoint-lg: 1024px; // Large devices (laptops)
+$breakpoint-xl: 1280px; // Extra large (desktops)
+$breakpoint-2xl: 1536px; // 2X large (large desktops)
 
 // Breakpoint map
 $breakpoints: (
@@ -635,6 +639,7 @@ $breakpoints: (
 ### Organizacja Komponentów
 
 Każdy komponent powinien:
+
 1. Używać BEM naming convention
 2. Importować tylko potrzebne zmienne
 3. Być responsywny
@@ -838,7 +843,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler',  // Nowoczesny kompilator Sass
+        api: 'modern-compiler', // Nowoczesny kompilator Sass
         loadPaths: [resolve(__dirname, 'src/styles')],
         silenceDeprecations: ['legacy-js-api'],
       },
@@ -853,16 +858,16 @@ export default defineConfig({
 
 ### Przydatne Narzędzia
 
-- **Sass Playground**: https://www.sassmeister.com/
-- **Color Contrast Checker**: https://webaim.org/resources/contrastchecker/
-- **Modular Scale Calculator**: https://www.modularscale.com/
-- **CSS Grid Generator**: https://cssgrid-generator.netlify.app/
+- **Sass Playground**: <https://www.sassmeister.com/>
+- **Color Contrast Checker**: <https://webaim.org/resources/contrastchecker/>
+- **Modular Scale Calculator**: <https://www.modularscale.com/>
+- **CSS Grid Generator**: <https://cssgrid-generator.netlify.app/>
 
 ### Dokumentacja
 
-- **Sass Documentation**: https://sass-lang.com/documentation
-- **Modern Sass**: https://sass-lang.com/blog/the-module-system-is-launched
-- **BEM Methodology**: http://getbem.com/
+- **Sass Documentation**: <https://sass-lang.com/documentation>
+- **Modern Sass**: <https://sass-lang.com/blog/the-module-system-is-launched>
+- **BEM Methodology**: <http://getbem.com/>
 
 ---
 
