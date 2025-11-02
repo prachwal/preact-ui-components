@@ -1,37 +1,37 @@
-import type { ComponentProps } from 'preact';
+import type { ComponentProps, JSX } from 'preact';
+import { memo } from 'preact/compat';
 
 /** Primary UI component for user interaction */
-export interface ButtonProps extends ComponentProps<'button'> {
+export interface ButtonProps extends Omit<ComponentProps<'button'>, 'type'> {
   primary?: boolean;
-  backgroundColor?: string | null;
+  backgroundColor?: string;
   size?: 'small' | 'medium' | 'large';
   label: string;
   onClick?: () => void;
   disabled?: boolean;
 }
 
-export const Button: preact.FunctionComponent<ButtonProps> = ({
+const ButtonComponent = ({
   primary = false,
-  backgroundColor = null,
+  backgroundColor,
   size = 'medium',
   label,
-  className,
+  className = '',
+  style,
   ...props
-}) => {
+}: ButtonProps): JSX.Element => {
   const mode = primary ? 'button--primary' : 'button--secondary';
-  const sizeClass = `button--${size}`;
-  const classes = ['button', sizeClass, mode, className]
-    .filter(Boolean)
-    .join(' ');
+  const classes = `button button--${size} ${mode}${className ? ` ${className}` : ''}`;
+
+  const buttonStyle = backgroundColor
+    ? Object.assign({}, style, { backgroundColor })
+    : style;
 
   return (
-    <button
-      type='button'
-      className={classes}
-      style={backgroundColor ? { backgroundColor } : undefined}
-      {...props}
-    >
+    <button type='button' className={classes} style={buttonStyle} {...props}>
       {label}
     </button>
   );
 };
+
+export const Button = memo(ButtonComponent);

@@ -1,5 +1,8 @@
 import { render } from 'preact';
-import { App } from './index';
+import { App } from './app';
 import './styles/index.scss';
 
-render(<App />, document.getElementById('app')!);
+const root = document.getElementById('app');
+if (root) {
+  render(<App />, root);
+}

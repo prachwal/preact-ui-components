@@ -1,31 +1,56 @@
-import { useState } from 'preact/hooks';
-
+import type { JSX } from 'preact';
+import { memo } from 'preact/compat';
+import { useCallback, useState } from 'preact/hooks';
 import { Header } from './Header';
 
-export type PageProps = {
+export interface PageProps {
   children?: preact.ComponentChildren;
-};
+}
 
-/** Simple page component */
-export const Page: preact.FunctionComponent<PageProps> = ({ children }) => {
-  const [user, setUser] = useState<{ name: string } | undefined>();
+interface User {
+  name: string;
+}
+
+const JANE_DOE: Readonly<User> = Object.freeze({ name: 'Jane Doe' });
+
+export const Page = ({ children }: PageProps): JSX.Element => {
+  const [user, setUser] = useState<User>();
+
+  const handleLogin = useCallback(() => setUser(JANE_DOE), []);
+  const handleLogout = useCallback(() => setUser(undefined), []);
+  const handleCreateAccount = useCallback(() => setUser(JANE_DOE), []);
 
   return (
     <article>
       <Header
         user={user}
-        onLogin={() => setUser({ name: 'Jane Doe' })}
-        onLogout={() => setUser(undefined)}
-        onCreateAccount={() => setUser({ name: 'Jane Doe' })}
+        onLogin={handleLogin}
+        onLogout={handleLogout}
+        onCreateAccount={handleCreateAccount}
       />
-
       <section className='page'>{children}</section>
     </article>
   );
 };
 
-/** Storybook content component */
-export const StorybookContent: preact.FunctionComponent = () => (
+const VIEWPORT_ICON: JSX.Element = (
+  <svg
+    width='10'
+    height='10'
+    viewBox='0 0 12 12'
+    xmlns='http://www.w3.org/2000/svg'
+    aria-hidden='true'
+  >
+    <g fill='none' fillRule='evenodd'>
+      <path
+        d='M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z'
+        fill='#999'
+      />
+    </g>
+  </svg>
+);
+
+const StorybookContentComponent = (): JSX.Element => (
   <>
     <h2>Pages in Storybook</h2>
     <p>
@@ -75,21 +100,10 @@ export const StorybookContent: preact.FunctionComponent = () => (
     </p>
     <div className='tip-wrapper'>
       <span className='tip'>Tip</span> Adjust the width of the canvas with the{' '}
-      <svg
-        width='10'
-        height='10'
-        viewBox='0 0 12 12'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <g fill='none' fillRule='evenodd'>
-          <path
-            d='M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z'
-            id='a'
-            fill='#999'
-          />
-        </g>
-      </svg>
+      {VIEWPORT_ICON}
       Viewports addon in the toolbar
     </div>
   </>
 );
+
+export const StorybookContent = memo(StorybookContentComponent);

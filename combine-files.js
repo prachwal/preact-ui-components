@@ -6,9 +6,26 @@ import path from 'path';
  * Separates each file with clear comments
  */
 
+const typedocConfig = JSON.parse(fs.readFileSync('typedoc.json', 'utf8'));
+const excludePatterns = typedocConfig.exclude || [];
+
 const extensions = ['.ts', '.tsx', '.scss', '.css'];
 const outputFile = 'combined-code.txt';
 const rootDir = './src'; // Start from src directory
+
+function shouldExclude(filePath) {
+  const relativePath = path.relative('.', filePath);
+  return excludePatterns.some(pattern => {
+    if (pattern === '**/node_modules/**') {
+      return relativePath.includes('node_modules');
+    } else if (pattern === '**/*.stories.tsx') {
+      return relativePath.endsWith('.stories.tsx');
+    } else if (pattern === '**/*.test.tsx') {
+      return relativePath.endsWith('.test.tsx');
+    }
+    return false;
+  });
+}
 
 function findFiles(dir, files = []) {
   const items = fs.readdirSync(dir);
@@ -23,7 +40,9 @@ function findFiles(dir, files = []) {
         findFiles(fullPath, files);
       }
     } else if (extensions.includes(path.extname(fullPath))) {
-      files.push(fullPath);
+      if (!shouldExclude(fullPath)) {
+        files.push(fullPath);
+      }
     }
   }
 
