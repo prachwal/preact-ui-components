@@ -52,59 +52,6 @@ $color-info-50: #e1f5fe;
 $color-info-500: #03a9f4; // Base
 $color-info-700: #0288d1;
 
-// Legacy App Colors (OKLCH-based for modern color spaces)
-// Primary colors
-$color-legacy-primary: oklch(55% 0.2 240);
-$color-legacy-primary-hover: oklch(65% 0.22 245);
-$color-legacy-primary-light: oklch(70% 0.15 235);
-$color-legacy-primary-alpha: oklch(55% 0.2 240 / 70%);
-$color-legacy-accent: oklch(55% 0.2 240);
-$color-legacy-preact: oklch(60% 0.22 275);
-
-// Background colors
-$color-legacy-bg-dark: oklch(18% 0.015 240);
-$color-legacy-bg-light: oklch(22% 0.02 240);
-$color-legacy-button-bg-dark: oklch(28% 0.03 240);
-$color-legacy-button-bg-light: oklch(85% 0.05 210);
-
-// Text colors
-$color-legacy-text-dark: oklch(92% 0.01 220);
-$color-legacy-text-light: oklch(75% 0.02 230);
-$color-legacy-text-secondary: oklch(65% 0.02 230);
-$color-legacy-text-muted: oklch(55% 0.02 230);
-
-// Status colors
-$color-legacy-success-bg: oklch(45% 0.12 160);
-$color-legacy-success-text: oklch(95% 0.01 160);
-$color-legacy-info: oklch(65% 0.12 200);
-
-// Borders and shadows
-$color-legacy-border: rgb(255 255 255 / 12%);
-$color-legacy-shadow: rgb(0 0 0 / 25%);
-$color-legacy-button-border: rgb(255 255 255 / 15%);
-
-// Light mode overrides
-$color-legacy-primary-light-mode: oklch(48% 0.2 240);
-$color-legacy-primary-hover-light: oklch(42% 0.22 245);
-$color-legacy-primary-light-light: oklch(65% 0.15 235);
-$color-legacy-primary-alpha-light: oklch(48% 0.2 240 / 80%);
-$color-legacy-accent-light: oklch(48% 0.2 240);
-$color-legacy-preact-light: oklch(52% 0.22 275);
-$color-legacy-bg-dark-light: oklch(97% 0.005 240);
-$color-legacy-bg-light-light: oklch(99% 0.002 240);
-$color-legacy-button-bg-dark-light: oklch(92% 0.01 240);
-$color-legacy-button-bg-light-light: oklch(95% 0.005 240);
-$color-legacy-text-dark-light: oklch(20% 0.02 230);
-$color-legacy-text-light-light: oklch(30% 0.03 230);
-$color-legacy-text-secondary-light: oklch(45% 0.02 230);
-$color-legacy-success-bg-light: oklch(75% 0.1 160);
-$color-legacy-success-text-light: oklch(25% 0.05 160);
-$color-legacy-info-light: oklch(55% 0.12 200);
-$color-legacy-text-muted-light: oklch(50% 0.02 230);
-$color-legacy-border-light: rgb(0 0 0 / 10%);
-$color-legacy-shadow-light: rgb(0 0 0 / 8%);
-$color-legacy-button-border-light: rgb(0 0 0 / 15%);
-
 // Semantic usage
 $color-text-primary: $color-neutral-900;
 $color-text-secondary: $color-neutral-700;

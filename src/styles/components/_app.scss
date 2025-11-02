@@ -48,46 +48,46 @@
   transition: filter 0.3s ease;
 
   &:hover {
-    filter: drop-shadow(0 0 2em $color-legacy-primary-alpha);
+    filter: drop-shadow(0 0 2em rgba($color-primary-500, 0.7));
   }
 
   &.preact:hover {
-    filter: drop-shadow(0 0 2em $color-legacy-preact);
+    filter: drop-shadow(0 0 2em rgba($color-secondary-500, 0.7));
   }
 }
 
 // Card component
 .card {
   padding: 2em;
-  background-color: $color-legacy-bg-light;
+  background-color: $color-bg-subtle;
   border-radius: 8px;
-  border: 1px solid $color-legacy-border;
-  box-shadow: 0 2px 8px $color-legacy-shadow;
+  border: 1px solid $color-border-default;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   transition: all 0.2s ease;
 
   &:hover {
-    box-shadow: 0 4px 16px $color-legacy-shadow;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
     transform: translateY(-2px);
   }
 
   p {
     margin: 1em 0;
-    color: $color-legacy-text-light;
+    color: $color-text-secondary;
   }
 
   code {
-    background-color: $color-legacy-bg-dark;
+    background-color: $color-neutral-800;
     padding: 0.2em 0.4em;
     border-radius: 4px;
     font-family: 'Fira Code', 'Courier New', monospace;
     font-size: 0.9em;
-    color: $color-legacy-text-light;
+    color: $color-neutral-100;
   }
 }
 
 // Main app heading
 h1 {
-  color: $color-legacy-text-dark;
+  color: $color-text-primary;
   font-size: 3.2em;
   line-height: 1.1;
   margin: 0.5em 0;
@@ -97,7 +97,7 @@ h1 {
 
 // Read the docs
 .read-the-docs {
-  color: $color-legacy-text-muted;
+  color: $color-text-secondary;
   font-size: 0.9rem;
 }
 
@@ -105,43 +105,41 @@ h1 {
 .button {
   display: inline-block;
   cursor: pointer;
-  border: 2px solid $color-legacy-button-border;
+  border: 2px solid $color-border-default;
   border-radius: 3em;
   font-weight: 700;
   line-height: 1;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: $color-legacy-button-bg-dark;
-  color: $color-legacy-text-dark;
+  background-color: $color-bg-default;
+  color: $color-text-primary;
   transition: all 0.2s ease;
   white-space: nowrap;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px $color-legacy-shadow;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   }
 
   &--primary {
-    background-color: $color-legacy-accent;
-    border-color: $color-legacy-accent;
+    background-color: $color-primary-500;
+    border-color: $color-primary-500;
     color: white;
 
     &:hover:not(:disabled) {
-      background-color: $color-legacy-primary-hover;
-      border-color: $color-legacy-primary-hover;
-      box-shadow: 0 4px 16px oklch(55% 0.2 240 / 40%);
+      background-color: $color-primary-600;
+      border-color: $color-primary-600;
+      box-shadow: 0 4px 16px rgba($color-primary-500, 0.4);
     }
   }
 
   &--secondary {
-    background-color: $color-legacy-button-bg-dark;
-    border-color: $color-legacy-button-border;
-    color: $color-legacy-text-dark;
+    background-color: $color-bg-default;
+    border-color: $color-border-default;
+    color: $color-text-primary;
 
     &:hover:not(:disabled) {
-      border-color: $color-legacy-primary;
-      background-color: oklch(
-        from $color-legacy-button-bg-dark calc(l + 0.05) c h
-      );
+      border-color: $color-primary-500;
+      background-color: $color-bg-hover;
     }
   }
 
@@ -167,7 +165,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid $color-legacy-border;
+  border-bottom: 1px solid $color-border-default;
   padding: 1rem;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   flex-wrap: wrap;
@@ -202,7 +200,7 @@ h1 {
     flex-wrap: wrap;
 
     .welcome {
-      color: $color-legacy-text-secondary;
+      color: $color-text-secondary;
       font-size: 14px;
       white-space: nowrap;
 
@@ -219,7 +217,7 @@ h1 {
   padding: 2rem 1rem;
   max-width: 600px;
   width: 100%;
-  color: $color-legacy-text-dark;
+  color: $color-text-primary;
   font-size: 14px;
   line-height: 1.6;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -244,7 +242,7 @@ h1 {
   a {
     color: inherit;
     text-decoration: underline;
-    text-decoration-color: $color-legacy-primary;
+    text-decoration-color: $color-primary-500;
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
 
@@ -272,9 +270,9 @@ h1 {
     vertical-align: middle;
     margin-right: 0.5rem;
     border-radius: 1em;
-    background: $color-legacy-success-bg;
+    background: $color-success-700;
     padding: 4px 12px;
-    color: $color-legacy-success-text;
+    color: white;
     font-weight: 700;
     font-size: 11px;
     line-height: 1.2;
@@ -283,9 +281,9 @@ h1 {
   .tip-wrapper {
     margin: 2rem 0;
     padding: 1rem;
-    background-color: $color-legacy-bg-light;
+    background-color: $color-bg-subtle;
     border-radius: 8px;
-    border-left: 3px solid $color-legacy-info;
+    border-left: 3px solid $color-info-500;
     font-size: 13px;
     line-height: 1.5;
     text-align: left;
@@ -298,7 +296,7 @@ h1 {
       height: 12px;
 
       path {
-        fill: $color-legacy-info;
+        fill: $color-info-500;
       }
     }
   }
@@ -306,10 +304,10 @@ h1 {
 
 // Storybook content wrapper
 .docs-story {
-  background-color: $color-legacy-bg-dark;
+  background-color: $color-neutral-900;
 
   @media (prefers-color-scheme: light) {
-    background-color: $color-legacy-bg-light;
+    background-color: $color-neutral-50;
   }
 }
 
@@ -317,12 +315,12 @@ h1 {
 .app-footer {
   margin-top: auto;
   padding: 1rem;
-  border-top: 1px solid $color-legacy-button-bg-dark;
-  background-color: $color-legacy-bg-dark;
+  border-top: 1px solid $color-border-default;
+  background-color: $color-bg-subtle;
 
   @media (prefers-color-scheme: light) {
-    background-color: $color-legacy-bg-light;
-    border-top-color: $color-legacy-button-bg-light;
+    background-color: $color-bg-subtle;
+    border-top-color: $color-border-default;
   }
 }
 
@@ -340,7 +338,7 @@ h1 {
   align-items: center;
   gap: 0.75rem;
   font-size: 0.875rem;
-  color: $color-legacy-text-secondary;
+  color: $color-text-secondary;
 }
 
 .build-status-label {
@@ -369,34 +367,34 @@ h1 {
   }
 
   &:focus {
-    outline: 2px solid $color-legacy-primary;
+    outline: 2px solid $color-primary-500;
     outline-offset: 2px;
   }
 
   &.enabled {
-    background-color: $color-legacy-primary-alpha;
-    color: $color-legacy-primary;
-    border: 1px solid $color-legacy-primary;
+    background-color: rgba($color-primary-500, 0.1);
+    color: $color-primary-600;
+    border: 1px solid $color-primary-500;
 
     svg {
       opacity: 1;
     }
 
     &:hover {
-      background-color: $color-legacy-primary;
+      background-color: $color-primary-500;
       color: white;
     }
   }
 
   &.disabled {
-    background-color: $color-legacy-button-bg-dark;
-    color: $color-legacy-text-muted;
-    border: 1px solid $color-legacy-button-bg-dark;
+    background-color: $color-bg-disabled;
+    color: $color-text-disabled;
+    border: 1px solid $color-border-default;
     cursor: not-allowed;
 
     @media (prefers-color-scheme: light) {
-      background-color: $color-legacy-button-bg-light;
-      border-color: $color-legacy-button-bg-light;
+      background-color: $color-bg-disabled;
+      border-color: $color-border-default;
     }
 
     svg {
@@ -424,14 +422,14 @@ h1 {
 
 .app-version {
   font-size: 0.875rem;
-  color: $color-legacy-text-secondary;
+  color: $color-text-secondary;
   font-weight: 500;
   padding: 0.25rem 0.5rem;
-  background-color: $color-legacy-button-bg-dark;
+  background-color: $color-bg-hover;
   border-radius: 0.25rem;
 
   @media (prefers-color-scheme: light) {
-    background-color: $color-legacy-button-bg-light;
+    background-color: $color-bg-hover;
   }
 }
 
