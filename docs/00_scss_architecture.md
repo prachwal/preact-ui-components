@@ -871,7 +871,7 @@ export default defineConfig({
 System SCSS w tym projekcie zapewnia:
 
 ✅ **Modularność** - czytelna struktura plików
-✅ **Skalowalnść** - łatwe rozszerzanie
+✅ **Skalowalność** - łatwe rozszerzanie
 ✅ **Performance** - optymalna kompilacja
 ✅ **DX** - przyjemne w użyciu
 ✅ **Konsystencja** - jednolite wzorce
