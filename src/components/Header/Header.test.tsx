@@ -24,7 +24,9 @@ describe('Header', () => {
   it('renders welcome message and logout button when logged in', () => {
     const user = { name: 'John Doe' };
     render(<Header {...defaultProps} user={user} />);
-    expect(screen.getByLabelText(`Logged in as ${user.name}`)).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(`Logged in as ${user.name}`)
+    ).toBeInTheDocument();
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('Log out')).toBeInTheDocument();
   });
@@ -32,20 +34,22 @@ describe('Header', () => {
   it('calls onLogin when login button is clicked', () => {
     const onLogin = vi.fn();
     render(<Header {...defaultProps} onLogin={onLogin} user={null} />);
-    
+
     const loginButton = screen.getByText('Log in');
     fireEvent.click(loginButton);
-    
+
     expect(onLogin).toHaveBeenCalledTimes(1);
   });
 
   it('calls onCreateAccount when signup button is clicked', () => {
     const onCreateAccount = vi.fn();
-    render(<Header {...defaultProps} onCreateAccount={onCreateAccount} user={null} />);
-    
+    render(
+      <Header {...defaultProps} onCreateAccount={onCreateAccount} user={null} />
+    );
+
     const signupButton = screen.getByText('Sign up');
     fireEvent.click(signupButton);
-    
+
     expect(onCreateAccount).toHaveBeenCalledTimes(1);
   });
 
@@ -53,10 +57,10 @@ describe('Header', () => {
     const onLogout = vi.fn();
     const user = { name: 'John Doe' };
     render(<Header {...defaultProps} onLogout={onLogout} user={user} />);
-    
+
     const logoutButton = screen.getByText('Log out');
     fireEvent.click(logoutButton);
-    
+
     expect(onLogout).toHaveBeenCalledTimes(1);
   });
 

@@ -13,12 +13,20 @@ describe('Page', () => {
   });
 
   it('renders Header component within Page', () => {
-    render(<Page><div>Content</div></Page>);
+    render(
+      <Page>
+        <div>Content</div>
+      </Page>
+    );
     expect(screen.getByText('Acme')).toBeInTheDocument();
   });
 
   it('applies correct CSS class to section', () => {
-    const { container } = render(<Page><div>Content</div></Page>);
+    const { container } = render(
+      <Page>
+        <div>Content</div>
+      </Page>
+    );
     const section = container.querySelector('.page');
     expect(section).toBeInTheDocument();
     expect(section).toHaveClass('page');
@@ -27,14 +35,18 @@ describe('Page', () => {
   it('passes children to section', () => {
     render(
       <Page>
-        <div data-testid="child-content">Child Content</div>
+        <div data-testid='child-content'>Child Content</div>
       </Page>
     );
     expect(screen.getByTestId('child-content')).toBeInTheDocument();
   });
 
   it('wraps content in article tag', () => {
-    const { container } = render(<Page><div>Content</div></Page>);
+    const { container } = render(
+      <Page>
+        <div>Content</div>
+      </Page>
+    );
     const article = container.querySelector('article');
     expect(article).toBeInTheDocument();
   });
@@ -53,8 +65,12 @@ describe('StorybookContent', () => {
 
   it('renders list of page features', () => {
     render(<StorybookContent />);
-    expect(screen.getByText(/Use a higher-level connected component/i)).toBeInTheDocument();
-    expect(screen.getByText(/Assemble data in the page component/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Use a higher-level connected component/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Assemble data in the page component/i)
+    ).toBeInTheDocument();
   });
 
   it('contains external link to component-driven.org', () => {

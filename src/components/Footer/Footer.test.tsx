@@ -47,10 +47,13 @@ describe('Footer', () => {
     const { container } = render(<Footer />);
     const buildIcons = container.querySelectorAll('.build-icon');
     expect(buildIcons.length).toBeGreaterThan(0);
-    
+
     buildIcons.forEach(icon => {
       expect(icon).toHaveClass('build-icon');
-      expect(icon.classList.contains('enabled') || icon.classList.contains('disabled')).toBe(true);
+      expect(
+        icon.classList.contains('enabled') ||
+          icon.classList.contains('disabled')
+      ).toBe(true);
     });
   });
 
