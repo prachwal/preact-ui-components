@@ -2,8 +2,8 @@ import type { JSX } from 'preact';
 import { useCallback, useMemo, useState } from 'preact/hooks';
 import preactLogo from './assets/preact.svg';
 import { Footer } from './components/Footer';
-import { Button } from './stories/Button';
-import { Page, StorybookContent } from './stories/Page';
+
+import { Button, Page, StorybookContent } from './components';
 import viteLogo from '/vite.svg';
 
 type Tab = 'home' | 'storybook';
