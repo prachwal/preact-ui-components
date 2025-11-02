@@ -4,7 +4,8 @@
 
 ### System SCSS
 
-- [00_scss_system.md](00_scss_system.md) - Architektura systemu SCSS, zmienne, mixiny, funkcje
+- [00_scss_architecture.md](00_scss_architecture.md) - **Kompletna architektura systemu SCSS** - struktura, zmienne, kolory, typografia, spacing, responsywność, mixiny, funkcje, komponenty i najlepsze praktyki
+- [00_scss_system.md](00_scss_system.md) - Przegląd systemu SCSS, zmienne, mixiny, funkcje
 - [00_scss_themes.md](00_scss_themes.md) - System motywów jasny/ciemny, CSS custom properties
 - [00_scss_utilities.md](00_scss_utilities.md) - Narzędzia pomocnicze, responsywność, animacje
 
@@ -74,10 +75,11 @@ Ta dokumentacja opisuje kompletny system komponentów UI dla aplikacji Preact, i
 System jest zbudowany w oparciu o:
 
 - **Preact** - lekka alternatywa dla React
-- **Modern SCSS** - @use/@forward zamiast @import
-- **CSS Custom Properties** - dla dynamicznych motywów
+- **Modern SCSS** - @use/@forward zamiast @import, nowoczesny kompilator Sass
+- **Standard Color Palette** - Material Design inspired, HSL-based colors (50-900 scales)
 - **Component Composition** - zamiast deep inheritance
-- **Utility-first CSS** - inspirowane Tailwind CSS
+- **Utility-first approach** - inspirowane Tailwind CSS
+- **Mobile-first Responsiveness** - rozpoczynamy od najmniejszych ekranów
 
 ## Szybki Start
 
