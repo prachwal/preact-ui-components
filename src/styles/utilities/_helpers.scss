@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../variables/breakpoints' as *;
 @use '../base/spacing' as *;
 @use '../base/colors' as *;
@@ -225,8 +226,8 @@ $valid-responsive-breakpoints: ('sm', 'md', 'lg', 'xl');
 
 // Responsive utilities
 @each $breakpoint-name in $valid-responsive-breakpoints {
-  $breakpoint-value: map-get($breakpoints, $breakpoint-name);
-  
+  $breakpoint-value: map.get($breakpoints, $breakpoint-name);
+
   @if $breakpoint-value {
     @media (min-width: $breakpoint-value) {
       .#{$breakpoint-name}\:block {

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../variables/z-index' as z-index-vars;
 @use '../variables/breakpoints' as breakpoint-vars;
 
@@ -55,8 +56,8 @@
 
 // Get z-index from map
 @function z($layer) {
-  @if map-has-key(z-index-vars.$z-layers, $layer) {
-    @return map-get(z-index-vars.$z-layers, $layer);
+  @if map.has-key(z-index-vars.$z-layers, $layer) {
+    @return map.get(z-index-vars.$z-layers, $layer);
   }
 
   @warn "Z-index layer '#{$layer}' not found";
@@ -65,8 +66,8 @@
 
 // Get breakpoint value
 @function breakpoint($name) {
-  @if map-has-key(breakpoint-vars.$breakpoints, $name) {
-    @return map-get(breakpoint-vars.$breakpoints, $name);
+  @if map.has-key(breakpoint-vars.$breakpoints, $name) {
+    @return map.get(breakpoint-vars.$breakpoints, $name);
   }
 
   @warn "Breakpoint '#{$name}' not found";
@@ -76,7 +77,7 @@
 // Deep map get
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
-    $map: map-get($map, $key);
+    $map: map.get($map, $key);
   }
   @return $map;
 }

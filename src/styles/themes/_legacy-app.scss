@@ -1,0 +1,192 @@
+// =============================================================================
+// Legacy App Theme
+// Generates CSS custom properties for backwards compatibility
+// =============================================================================
+
+@use 'sass:map';
+@use '../base/colors' as colors;
+
+// Legacy app theme definition
+$legacy-app-theme: (
+  // Color palette - Dark mode defaults
+  primary: colors.$color-legacy-primary,
+  primary-hover: colors.$color-legacy-primary-hover,
+  primary-light: colors.$color-legacy-primary-light,
+  primary-alpha: colors.$color-legacy-primary-alpha,
+  accent: colors.$color-legacy-accent,
+  preact: colors.$color-legacy-preact,
+
+  // Backgrounds
+  bg-dark: colors.$color-legacy-bg-dark,
+  bg-light: colors.$color-legacy-bg-light,
+  button-bg-dark: colors.$color-legacy-button-bg-dark,
+  button-bg-light: colors.$color-legacy-button-bg-light,
+
+  // Text colors
+  text-dark: colors.$color-legacy-text-dark,
+  text-light: colors.$color-legacy-text-light,
+  text-secondary: colors.$color-legacy-text-secondary,
+  muted: colors.$color-legacy-text-muted,
+
+  // Status colors
+  success-bg: colors.$color-legacy-success-bg,
+  success-text: colors.$color-legacy-success-text,
+  info: colors.$color-legacy-info,
+
+  // Borders and shadows
+  border: colors.$color-legacy-border,
+  shadow: colors.$color-legacy-shadow,
+  button-border: colors.$color-legacy-button-border
+);
+
+// Light mode overrides
+$legacy-app-theme-light: (
+  primary: colors.$color-legacy-primary-light-mode,
+  primary-hover: colors.$color-legacy-primary-hover-light,
+  primary-light: colors.$color-legacy-primary-light-light,
+  primary-alpha: colors.$color-legacy-primary-alpha-light,
+  accent: colors.$color-legacy-accent-light,
+  preact: colors.$color-legacy-preact-light,
+  bg-dark: colors.$color-legacy-bg-dark-light,
+  bg-light: colors.$color-legacy-bg-light-light,
+  button-bg-dark: colors.$color-legacy-button-bg-dark-light,
+  button-bg-light: colors.$color-legacy-button-bg-light-light,
+  text-dark: colors.$color-legacy-text-dark-light,
+  text-light: colors.$color-legacy-text-light-light,
+  text-secondary: colors.$color-legacy-text-secondary-light,
+  success-bg: colors.$color-legacy-success-bg-light,
+  success-text: colors.$color-legacy-success-text-light,
+  info: colors.$color-legacy-info-light,
+  muted: colors.$color-legacy-text-muted-light,
+  border: colors.$color-legacy-border-light,
+  shadow: colors.$color-legacy-shadow-light,
+  button-border: colors.$color-legacy-button-border-light,
+);
+
+// Generate CSS custom properties for dark mode (default)
+:root {
+  // Color palette - Dark mode defaults
+  --color-primary: #{map.get($legacy-app-theme, primary)};
+  --color-primary-hover: #{map.get($legacy-app-theme, primary-hover)};
+  --color-primary-light: #{map.get($legacy-app-theme, primary-light)};
+  --color-primary-alpha: #{map.get($legacy-app-theme, primary-alpha)};
+  --color-accent: #{map.get($legacy-app-theme, accent)};
+  --color-preact: #{map.get($legacy-app-theme, preact)};
+
+  // Backgrounds
+  --color-bg-dark: #{map.get($legacy-app-theme, bg-dark)};
+  --color-bg-light: #{map.get($legacy-app-theme, bg-light)};
+  --color-button-bg-dark: #{map.get($legacy-app-theme, button-bg-dark)};
+  --color-button-bg-light: #{map.get($legacy-app-theme, button-bg-light)};
+
+  // Text colors
+  --color-text-dark: #{map.get($legacy-app-theme, text-dark)};
+  --color-text-light: #{map.get($legacy-app-theme, text-light)};
+  --color-text-secondary: #{map.get($legacy-app-theme, text-secondary)};
+  --color-muted: #{map.get($legacy-app-theme, muted)};
+
+  // Status colors
+  --color-success-bg: #{map.get($legacy-app-theme, success-bg)};
+  --color-success-text: #{map.get($legacy-app-theme, success-text)};
+  --color-info: #{map.get($legacy-app-theme, info)};
+
+  // Borders and shadows
+  --color-border: #{map.get($legacy-app-theme, border)};
+  --color-shadow: #{map.get($legacy-app-theme, shadow)};
+  --color-button-border: #{map.get($legacy-app-theme, button-border)};
+
+  // Rendering
+  color-scheme: light dark;
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-dark);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+// Light mode overrides
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-primary: #{map.get($legacy-app-theme-light, primary)};
+    --color-primary-hover: #{map.get($legacy-app-theme-light, primary-hover)};
+    --color-primary-light: #{map.get($legacy-app-theme-light, primary-light)};
+    --color-primary-alpha: #{map.get($legacy-app-theme-light, primary-alpha)};
+    --color-accent: #{map.get($legacy-app-theme-light, accent)};
+    --color-preact: #{map.get($legacy-app-theme-light, preact)};
+    --color-bg-dark: #{map.get($legacy-app-theme-light, bg-dark)};
+    --color-bg-light: #{map.get($legacy-app-theme-light, bg-light)};
+    --color-button-bg-dark: #{map.get($legacy-app-theme-light, button-bg-dark)};
+    --color-button-bg-light: #{map.get(
+        $legacy-app-theme-light,
+        button-bg-light
+      )};
+    --color-text-dark: #{map.get($legacy-app-theme-light, text-dark)};
+    --color-text-light: #{map.get($legacy-app-theme-light, text-light)};
+    --color-text-secondary: #{map.get($legacy-app-theme-light, text-secondary)};
+    --color-success-bg: #{map.get($legacy-app-theme-light, success-bg)};
+    --color-success-text: #{map.get($legacy-app-theme-light, success-text)};
+    --color-info: #{map.get($legacy-app-theme-light, info)};
+    --color-muted: #{map.get($legacy-app-theme-light, muted)};
+    --color-border: #{map.get($legacy-app-theme-light, border)};
+    --color-shadow: #{map.get($legacy-app-theme-light, shadow)};
+    --color-button-border: #{map.get($legacy-app-theme-light, button-border)};
+  }
+}
+
+// Legacy app-specific styles (backwards compatibility)
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid var(--color-button-border);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-button-bg-dark);
+  color: var(--color-text-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px var(--color-shadow);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

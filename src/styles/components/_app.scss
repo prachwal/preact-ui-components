@@ -1,0 +1,452 @@
+// =============================================================================
+// App-specific Component Styles
+// Migrated from legacy CSS to modern SCSS system
+// =============================================================================
+
+@use '../base/colors' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/responsive' as *;
+
+// App layout
+#app {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+
+  @include respond-to(md) {
+    padding: 2rem;
+  }
+}
+
+// Tab navigation
+.tab-navigation {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+// Logo container
+.logo-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  height: clamp(4em, 10vw, 6em);
+  padding: 1em;
+  will-change: filter;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 2em $color-legacy-primary-alpha);
+  }
+
+  &.preact:hover {
+    filter: drop-shadow(0 0 2em $color-legacy-preact);
+  }
+}
+
+// Card component
+.card {
+  padding: 2em;
+  background-color: $color-legacy-bg-light;
+  border-radius: 8px;
+  border: 1px solid $color-legacy-border;
+  box-shadow: 0 2px 8px $color-legacy-shadow;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px $color-legacy-shadow;
+    transform: translateY(-2px);
+  }
+
+  p {
+    margin: 1em 0;
+    color: $color-legacy-text-light;
+  }
+
+  code {
+    background-color: $color-legacy-bg-dark;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: $color-legacy-text-light;
+  }
+}
+
+// Main app heading
+h1 {
+  color: $color-legacy-text-dark;
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 0.5em 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+// Read the docs
+.read-the-docs {
+  color: $color-legacy-text-muted;
+  font-size: 0.9rem;
+}
+
+// Storybook button compatibility
+.button {
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid $color-legacy-button-border;
+  border-radius: 3em;
+  font-weight: 700;
+  line-height: 1;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: $color-legacy-button-bg-dark;
+  color: $color-legacy-text-dark;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px $color-legacy-shadow;
+  }
+
+  &--primary {
+    background-color: $color-legacy-accent;
+    border-color: $color-legacy-accent;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: $color-legacy-primary-hover;
+      border-color: $color-legacy-primary-hover;
+      box-shadow: 0 4px 16px oklch(55% 0.2 240 / 40%);
+    }
+  }
+
+  &--secondary {
+    background-color: $color-legacy-button-bg-dark;
+    border-color: $color-legacy-button-border;
+    color: $color-legacy-text-dark;
+
+    &:hover:not(:disabled) {
+      border-color: $color-legacy-primary;
+      background-color: oklch(
+        from $color-legacy-button-bg-dark calc(l + 0.05) c h
+      );
+    }
+  }
+
+  &--small {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  &--medium {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  &--large {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+}
+
+// Header component
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid $color-legacy-border;
+  padding: 1rem;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  flex-wrap: wrap;
+
+  @include respond-to(md) {
+    padding: 1rem 1.5rem;
+    flex-wrap: nowrap;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    svg {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: clamp(18px, 4vw, 20px);
+      line-height: 1;
+      margin: 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    .welcome {
+      color: $color-legacy-text-secondary;
+      font-size: 14px;
+      white-space: nowrap;
+
+      @include respond-below(md) {
+        display: none;
+      }
+    }
+  }
+}
+
+// Page component
+.page {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  max-width: 600px;
+  width: 100%;
+  color: $color-legacy-text-dark;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  @include respond-to(md) {
+    padding: 3rem 1.5rem;
+    font-size: 15px;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-weight: 700;
+    font-size: clamp(24px, 5vw, 32px);
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 1em 0;
+    text-align: left;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: $color-legacy-primary;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  ul {
+    margin: 1em 0;
+    padding-left: 1.5rem;
+    text-align: left;
+
+    @include respond-to(md) {
+      padding-left: 2rem;
+    }
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+  }
+
+  .tip {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    border-radius: 1em;
+    background: $color-legacy-success-bg;
+    padding: 4px 12px;
+    color: $color-legacy-success-text;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .tip-wrapper {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: $color-legacy-bg-light;
+    border-radius: 8px;
+    border-left: 3px solid $color-legacy-info;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0.25rem 0 0;
+      width: 12px;
+      height: 12px;
+
+      path {
+        fill: $color-legacy-info;
+      }
+    }
+  }
+}
+
+// Storybook content wrapper
+.docs-story {
+  background-color: $color-legacy-bg-dark;
+
+  @media (prefers-color-scheme: light) {
+    background-color: $color-legacy-bg-light;
+  }
+}
+
+// Footer
+.app-footer {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid $color-legacy-button-bg-dark;
+  background-color: $color-legacy-bg-dark;
+
+  @media (prefers-color-scheme: light) {
+    background-color: $color-legacy-bg-light;
+    border-top-color: $color-legacy-button-bg-light;
+  }
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.build-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: $color-legacy-text-secondary;
+}
+
+.build-status-label {
+  font-weight: 500;
+}
+
+.build-icons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.build-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  }
+
+  &:focus {
+    outline: 2px solid $color-legacy-primary;
+    outline-offset: 2px;
+  }
+
+  &.enabled {
+    background-color: $color-legacy-primary-alpha;
+    color: $color-legacy-primary;
+    border: 1px solid $color-legacy-primary;
+
+    svg {
+      opacity: 1;
+    }
+
+    &:hover {
+      background-color: $color-legacy-primary;
+      color: white;
+    }
+  }
+
+  &.disabled {
+    background-color: $color-legacy-button-bg-dark;
+    color: $color-legacy-text-muted;
+    border: 1px solid $color-legacy-button-bg-dark;
+    cursor: not-allowed;
+
+    @media (prefers-color-scheme: light) {
+      background-color: $color-legacy-button-bg-light;
+      border-color: $color-legacy-button-bg-light;
+    }
+
+    svg {
+      opacity: 0.5;
+    }
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+}
+
+.icon-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.app-version {
+  font-size: 0.875rem;
+  color: $color-legacy-text-secondary;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  background-color: $color-legacy-button-bg-dark;
+  border-radius: 0.25rem;
+
+  @media (prefers-color-scheme: light) {
+    background-color: $color-legacy-button-bg-light;
+  }
+}
+
+@include respond-below(md) {
+  .footer-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .build-status {
+    justify-content: center;
+  }
+
+  .app-version {
+    align-self: center;
+  }
+}

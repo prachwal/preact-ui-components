@@ -19,6 +19,7 @@
 The project uses a modern, modular SCSS system based on the Sass module system (@use/@forward):
 
 **Structure:**
+
 ```
 src/styles/
 ├── base/              # Foundation (reset, colors, spacing, typography)
@@ -31,7 +32,7 @@ src/styles/
 ### Key Principles
 
 1. **Use @use/@forward instead of @import** - Modern Sass modules for better namespacing
-2. **BEM Methodology** - Block__Element--Modifier naming for component styles
+2. **BEM Methodology** - Block\_\_Element--Modifier naming for component styles
 3. **Design Tokens** - Centralized variables for consistency
 4. **Mobile-First** - Responsive design starts with smallest screens
 5. **Modern Compiler API** - Using 'modern-compiler' in Vite config
@@ -39,6 +40,7 @@ src/styles/
 ### Important SCSS Patterns
 
 **✅ DO:**
+
 ```scss
 // Use @use with namespace
 @use '../base/colors' as *;
@@ -50,12 +52,25 @@ $size: fn.rem(16);
 
 // Forward for re-exports
 @forward 'variables/typography';
+
+// Use modern SCSS module functions
+@use 'sass:map';
+@use 'sass:list';
+
+// Access map values with modern syntax
+$value: map.get($map, $key);
+$list: list.append($list, $item, comma);
 ```
 
 **❌ DON'T:**
+
 ```scss
 // Don't use deprecated @import
 @import 'variables/colors'; // DEPRECATED
+
+// Don't use deprecated global functions
+$value: map-get($map, $key); // DEPRECATED - use map.get()
+$list: append($list, $item); // DEPRECATED - use list.append()
 
 // Don't use @use inside functions/mixins
 @function my-fn() {
@@ -63,7 +78,8 @@ $size: fn.rem(16);
 }
 
 // Don't use number-starting class names
-.2xl\:flex {} // ERROR in SCSS
+.2xl\:flex {
+} // ERROR in SCSS
 ```
 
 ### Vite Configuration for SCSS
@@ -79,6 +95,58 @@ css: {
   },
 }
 ```
+
+### Legacy Theme System
+
+The project includes a legacy theme system for backwards compatibility with existing CSS custom properties:
+
+**Features:**
+
+- OKLCH color space for modern color representation
+- Automatic dark/light mode switching via `prefers-color-scheme`
+- CSS custom properties generation from SCSS maps
+- Backwards compatible with existing component classes
+
+**Structure:**
+
+```
+src/styles/themes/
+└── _legacy-app.scss    # Legacy app theme with OKLCH colors
+```
+
+**Usage:**
+
+```scss
+// CSS custom properties are automatically generated
+:root {
+  --color-primary: oklch(55% 0.2 240);
+  --color-bg-dark: oklch(18% 0.015 240);
+  // ... etc
+}
+
+// Light mode overrides
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-primary: oklch(48% 0.2 240);
+    // ... adjusted colors
+  }
+}
+```
+
+### Color System
+
+**Modern OKLCH Colors:**
+
+- Primary: `oklch(55% 0.2 240)` (blue-purple)
+- Semantic colors for success, warning, error, info
+- Automatic contrast calculation
+- Light/dark mode variants
+
+**Legacy HSL Colors:**
+
+- Traditional HSL color palette
+- Maintained for component compatibility
+- Graduated scales (50-900) for each color
 
 ## Component Development
 
@@ -162,6 +230,7 @@ export const Component: React.FC<ComponentProps> = (
 ## ESLint Configuration
 
 Enhanced with:
+
 - React/Preact hooks rules
 - TypeScript best practices
 - Prettier integration
@@ -185,6 +254,10 @@ Enhanced with:
 - ✅ Modern Sass compiler API
 - ✅ Modular SCSS architecture
 - ✅ BEM naming methodology
+- ✅ Modern SCSS functions (sass:map, sass:list)
+- ✅ OKLCH color space for modern colors
+- ✅ Legacy theme system with CSS custom properties
+- ✅ Automatic dark/light mode switching
 - ✅ Comprehensive test coverage
 - ✅ Path aliases for cleaner imports
 - ✅ ESLint with React hooks
